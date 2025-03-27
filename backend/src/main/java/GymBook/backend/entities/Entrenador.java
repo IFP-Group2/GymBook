@@ -1,8 +1,6 @@
 package GymBook.backend.entities;
 
 import jakarta.persistence.*;
-import lombok.Data;
-
 @Entity
 @Table(name = "entrenador")
 public class Entrenador {

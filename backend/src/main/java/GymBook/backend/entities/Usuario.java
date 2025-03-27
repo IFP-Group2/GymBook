@@ -1,7 +1,6 @@
 package GymBook.backend.entities;
 
 import jakarta.persistence.*;
-import lombok.Data;
 
 @Entity
 public class Usuario {
