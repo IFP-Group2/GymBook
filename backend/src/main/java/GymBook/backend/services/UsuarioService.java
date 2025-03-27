@@ -5,6 +5,7 @@ import GymBook.backend.repositories.UsuarioRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class UsuarioService {
@@ -15,14 +16,18 @@ public class UsuarioService {
     }
 
     public List<Usuario> findAll() {
-        List<Usuario> usuarios = usuarioRepository.findAll();
-        if (usuarios.isEmpty()) {
-            throw new RuntimeException("Usuarios no encontrados");
-        }
-        return usuarios;
+        return usuarioRepository.findAll();
+    }
+
+    public Optional<Usuario> findById(Long id) {
+        return usuarioRepository.findById(id);
     }
 
     public Usuario save(Usuario usuario) {
         return usuarioRepository.save(usuario);
+    }
+
+    public void deleteById(Long id) {
+        usuarioRepository.deleteById(id);
     }
 }
