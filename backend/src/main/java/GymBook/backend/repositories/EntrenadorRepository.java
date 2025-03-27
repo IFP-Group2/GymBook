@@ -1,4 +1,6 @@
 package GymBook.backend.repositories;
 
-public interface EntrenadorRepository {
-}
+import GymBook.backend.entities.Entrenador;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface EntrenadorRepository extends JpaRepository<Entrenador, Long> {}

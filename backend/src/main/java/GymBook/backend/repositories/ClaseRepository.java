@@ -1,4 +1,6 @@
 package GymBook.backend.repositories;
 
-public interface ClaseRepository {
-}
+import GymBook.backend.entities.Clase;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface ClaseRepository extends JpaRepository<Clase, Long> {}
