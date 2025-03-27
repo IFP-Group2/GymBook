@@ -29,8 +29,8 @@ public class RolController {
     }
 
     @PostMapping
-    public Rol createRol(@RequestBody Rol rol) {
-        return rolService.save(rol);
+    public ResponseEntity<Rol> createRol(@RequestBody Rol rol) {
+        return ResponseEntity.ok(rolService.save(rol));
     }
 
     @DeleteMapping("/{id}")

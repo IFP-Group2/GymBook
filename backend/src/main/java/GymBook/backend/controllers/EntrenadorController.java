@@ -1,7 +1,9 @@
 package GymBook.backend.controllers;
 
 import GymBook.backend.entities.Entrenador;
+import GymBook.backend.entities.Usuario;
 import GymBook.backend.services.EntrenadorService;
+import GymBook.backend.services.UsuarioService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -12,9 +14,11 @@ import java.util.Optional;
 @RequestMapping("/entrenadores")
 public class EntrenadorController {
     private final EntrenadorService entrenadorService;
+    private final UsuarioService usuarioService;
 
-    public EntrenadorController(EntrenadorService entrenadorService) {
+    public EntrenadorController(EntrenadorService entrenadorService, UsuarioService usuarioService) {
         this.entrenadorService = entrenadorService;
+        this.usuarioService = usuarioService;
     }
 
     @GetMapping
@@ -29,8 +33,18 @@ public class EntrenadorController {
     }
 
     @PostMapping
-    public Entrenador createEntrenador(@RequestBody Entrenador entrenador) {
-        return entrenadorService.save(entrenador);
+    public ResponseEntity<Entrenador> createEntrenador(@RequestBody Entrenador entrenador) {
+        if (entrenador.getUsuario() == null || entrenador.getUsuario().getId() == null) {
+            return ResponseEntity.badRequest().body(null);
+        }
+
+        Optional<Usuario> usuarioOptional = usuarioService.findById(entrenador.getUsuario().getId());
+        if (usuarioOptional.isEmpty()) {
+            return ResponseEntity.badRequest().body(null);
+        }
+
+        entrenador.setUsuario(usuarioOptional.get()); // Asigna el usuario existente
+        return ResponseEntity.ok(entrenadorService.save(entrenador));
     }
 
     @DeleteMapping("/{id}")

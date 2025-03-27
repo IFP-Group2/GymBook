@@ -1,6 +1,8 @@
 package GymBook.backend.controllers;
 
+import GymBook.backend.entities.Rol;
 import GymBook.backend.entities.Usuario;
+import GymBook.backend.services.RolService;
 import GymBook.backend.services.UsuarioService;
 import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
@@ -13,9 +15,11 @@ import java.util.Optional;
 @RequestMapping("/usuarios")
 public class UsuarioController {
     private final UsuarioService usuarioService;
+    private final RolService rolService;
 
-    public UsuarioController(UsuarioService usuarioService) {
+    public UsuarioController(UsuarioService usuarioService, RolService rolService) {
         this.usuarioService = usuarioService;
+        this.rolService = rolService;
     }
 
     @GetMapping
@@ -30,8 +34,18 @@ public class UsuarioController {
     }
 
     @PostMapping
-    public Usuario createUsuario(@Valid @RequestBody Usuario usuario) {
-        return usuarioService.save(usuario);
+    public ResponseEntity<Usuario> createUsuario(@Valid @RequestBody Usuario usuario) {
+        if (usuario.getRol() == null || usuario.getRol().getId() == null) {
+            return ResponseEntity.badRequest().body(null);
+        }
+
+        Optional<Rol> rolOptional = rolService.findById(usuario.getRol().getId());
+        if (rolOptional.isEmpty()) {
+            return ResponseEntity.badRequest().body(null);
+        }
+
+        usuario.setRol(rolOptional.get()); // Asigna el rol existente
+        return ResponseEntity.ok(usuarioService.save(usuario));
     }
 
     @DeleteMapping("/{id}")
