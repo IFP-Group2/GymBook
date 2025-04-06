@@ -48,7 +48,6 @@ public class EntrenadorControllerTest {
 
     @Test
     public void testGetEntrenadorByIdFound() {
-        // Arrange
         Long id = 1L;
         Entrenador entrenador = new Entrenador();
         when(entrenadorService.findById(id)).thenReturn(Optional.of(entrenador));
