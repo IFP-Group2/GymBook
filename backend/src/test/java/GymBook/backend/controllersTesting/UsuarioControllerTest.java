@@ -1,4 +1,4 @@
-package GymBook.backend.controllersTest;
+package GymBook.backend.controllersTesting;
 
 import GymBook.backend.controllers.UsuarioController;
 import GymBook.backend.entities.Rol;
@@ -38,7 +38,7 @@ public class UsuarioControllerTest {
     public void testCreateUsuario() {
         // Crear un rol simulado
         Rol rol = new Rol();
-        rol.setId(1L); // Asegúrate de que este ID exista en tu base de datos o en tus pruebas
+        rol.setId(1L);
 
         Usuario usuario = new Usuario();
         usuario.setNombre("Test User");
@@ -47,7 +47,7 @@ public class UsuarioControllerTest {
         usuario.setTelefono("123456789");
         usuario.setRol(rol); // Asignar un rol al usuario
 
-        when(rolService.findById(1L)).thenReturn(Optional.of(rol)); // Simular el rol
+        when(rolService.findById(1L)).thenReturn(Optional.of(rol));
         when(usuarioService.save(any(Usuario.class))).thenReturn(usuario);
 
         ResponseEntity<Usuario> response = usuarioController.createUsuario(usuario);
