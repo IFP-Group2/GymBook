@@ -1,0 +1,16 @@
+.book-class-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 50px;
+}
+
+.book-class-container h1 {
+    font-size: 32px;
+    color: #4CAF50;
+}
+
+.book-class-container p {
+    margin-top: 20px;
+    font-size: 18px;
+}

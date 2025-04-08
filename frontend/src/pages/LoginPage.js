@@ -1,11 +1,16 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import '../styles/LoginPage.css';
+import { useNavigate } from 'react-router-dom';
+
+
 
 function LoginPage() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [message, setMessage] = useState('');
+    const navigate = useNavigate();
+
 
     const handleSubmit = async (e) => {
       e.preventDefault();
@@ -19,6 +24,8 @@ function LoginPage() {
               password,
           });
           setMessage(response.data.message);
+          //Redirige a MainMenuPage si el login fue exitoso
+          navigate('/mainmenu');
       } catch (error) {
           if (error.response) {
               setMessage(error.response.data.message || 'Error en el inicio de sesión');

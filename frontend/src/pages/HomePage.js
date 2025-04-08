@@ -5,7 +5,7 @@ import '../styles/HomePage.css';
 const HomePage = () => {
     return (
         <div className="homepage">
-            <h1>Bienvenidos a GymBook</h1>
+            <h1>Bienvenid@s a GymBook</h1>
             <p>¡Con nosotros encontraréis la mejor forma de gestionar tu gimnasio!</p>
             <Link to="/login">
                 <button>Empieza ahora</button>
