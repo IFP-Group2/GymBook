@@ -3,6 +3,7 @@ package GymBook.backend.controllers;
 import GymBook.backend.entities.Usuario;
 import GymBook.backend.services.UsuarioService;
 import jakarta.validation.Valid;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -18,19 +19,23 @@ public class AuthController {
     public AuthController(UsuarioService usuarioService) {
         this.usuarioService = usuarioService;
     }
-    
+
     @PostMapping("/login")
     public ResponseEntity<Map<String, String>> login(@Valid @RequestBody Usuario loginRequest) {
         Map<String, String> response = new HashMap<>();
 
-        // Lógica de autenticación real
         Usuario usuario = usuarioService.findByEmail(loginRequest.getEmail());
-        if (usuario != null && usuarioService.checkPassword(loginRequest.getPassword(), usuario.getPassword())) {
-            response.put("message", "Login exitoso");
-            return ResponseEntity.ok(response);
-        } else {
+        if (usuario == null) {
             response.put("message", "Credenciales inválidas");
-            return ResponseEntity.status(401).body(response);
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(response);
         }
+
+        if (!usuarioService.checkPassword(loginRequest.getPassword(), usuario.getPassword())) {
+            response.put("message", "Credenciales inválidas");
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(response);
+        }
+
+        response.put("message", "Login exitoso");
+        return ResponseEntity.ok(response);
     }
 }
