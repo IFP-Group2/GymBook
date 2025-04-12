@@ -1,29 +1,28 @@
 /*src/styles/HomePage.css */
 .homepage {
-    text-align: center;
-    margin-top: 50px;
-  }
-  
-  .homepage h1 {
-    font-size: 3em;
-    color: #2c3e50;
-  }
-  
-  .homepage p {
-    font-size: 1.5em;
-    color: #34495e;
-  }
-  
-  .homepage button {
-    padding: 10px 20px;
-    font-size: 1em;
-    background-color: #27ae60;
-    color: white;
-    border: none;
-    cursor: pointer;
-  }
-  
-  .homepage button:hover {
-    background-color: #2ecc71;
-  }
-  
+  text-align: center;
+  margin-top: 50px;
+}
+
+.homepage h1 {
+  font-size: 3em;
+  color: #bda361;
+}
+
+.homepage p {
+  font-size: 1.5em;
+  color: #bda361;
+}
+
+.homepage button {
+  padding: 10px 20px;
+  font-size: 1em;
+  background-color: #27ae60;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+.homepage button:hover {
+  background-color: #2ecc71;
+}
