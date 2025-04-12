@@ -9,10 +9,10 @@ const MainMenuPage = () => {
       <h1>Bienvenid@ a tu gimnasio</h1>
       <div className="menu-options">
         <button onClick={() => navigate('/book-class')}>
-          Reservar Clase
+          Reservar clase
         </button>
         <button onClick={() => navigate('/trainers')}>
-          Ver Entrenadores
+          Ver entrenadores
         </button>
         <button onClick={() => navigate('/settings')}>
           Configuración
