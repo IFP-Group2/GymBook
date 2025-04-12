@@ -38,3 +38,13 @@
 .settings-section button:hover {
     background-color: #45a049;
 }
+
+.settings-section h2 {
+    color: #333;
+    /* Color oscuro normal */
+}
+
+body.dark-mode .settings-section h2 {
+    color: #fff;
+    /* Color blanco cuando hay modo oscuro */
+}

@@ -8,7 +8,7 @@ import TrainersPage from './pages/TrainersPage';
 import SettingsPage from './pages/SettingsPage';
 import ChangePasswordPage from './pages/ChangePasswordPage';
 import ManageNotificationsPage from './pages/ManageNotificationsPage';
-import ChangeLanguagePage from './pages/ChangeLanguagePage';
+import DarkModePage from './pages/DarkModePage';
 
 
 
@@ -26,7 +26,7 @@ function App() {
                     <Route path="/settings" element={<SettingsPage />} />
                     <Route path="/change-password" element={<ChangePasswordPage />} />
                     <Route path="/manage-notifications" element={<ManageNotificationsPage />} />
-                    <Route path="/change-language" element={<ChangeLanguagePage />} />
+                    <Route path="/dark-mode" element={<DarkModePage />} />
                 </Routes>
             </div>
         </Router>

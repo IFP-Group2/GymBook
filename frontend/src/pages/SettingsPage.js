@@ -23,8 +23,8 @@ const SettingsPage = () => {
 
             <div className="settings-section">
                 <h2>Preferencias</h2>
-                <Link to="/change-language">
-                    <button>Cambiar idioma</button>
+                <Link to="/dark-mode">
+                    <button>Cambiar a modo oscuro</button>
                 </Link>
             </div>
         </div>
