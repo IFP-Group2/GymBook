@@ -4,7 +4,7 @@ import '../styles/TrainersPage.css';
 const TrainersPage = () => {
     // Datos de ejemplo
     const trainers = [
-        { id: 1, name: 'Pablo Romero', specialty: 'Fuerza y Acondicionamiento' },
+        { id: 1, name: 'Pablo Romero', specialty: 'Fuerza, Pilates y Acondicionamiento' },
         { id: 2, name: 'Celia Martínez', specialty: 'Yoga y Movilidad' },
         { id: 3, name: 'Carlos Pérez', specialty: 'CrossFit y Resistencia' },
     ];

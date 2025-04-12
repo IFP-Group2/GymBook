@@ -10,7 +10,7 @@ const BookClassPage = () => {
         {
             id: 1,
             name: 'Yoga Avanzado',
-            trainer: 'Ana López',
+            trainer: 'Celia Martínez',
             date: '2025-06-20',
             time: '10:00'
         },
@@ -24,7 +24,7 @@ const BookClassPage = () => {
         {
             id: 3,
             name: 'Pilates Intermedio',
-            trainer: 'Laura Sánchez',
+            trainer: 'Pablo Romero',
             date: '2025-06-22',
             time: '09:00'
         }
