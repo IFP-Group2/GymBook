@@ -7,7 +7,7 @@ const HomePage = () => {
         <div className="homepage">
             <h1>Bienvenid@s a GymBook</h1>
             <p>¡Con nosotros encontraréis la mejor forma de gestionar tu gimnasio!</p>
-            <Link to="/mainmenu">
+            <Link to="/login">
                 <button>Empieza ahora</button>
             </Link>
         </div>

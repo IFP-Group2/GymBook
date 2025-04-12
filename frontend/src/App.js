@@ -9,6 +9,7 @@ import SettingsPage from './pages/SettingsPage';
 import ChangePasswordPage from './pages/ChangePasswordPage';
 import ManageNotificationsPage from './pages/ManageNotificationsPage';
 import DarkModePage from './pages/DarkModePage';
+import ForgotPasswordPage from './pages/ForgotPasswordPage';
 
 
 
@@ -27,6 +28,7 @@ function App() {
                     <Route path="/change-password" element={<ChangePasswordPage />} />
                     <Route path="/manage-notifications" element={<ManageNotificationsPage />} />
                     <Route path="/dark-mode" element={<DarkModePage />} />
+                    <Route path="/forgot-password" element={<ForgotPasswordPage />} />
                 </Routes>
             </div>
         </Router>
