@@ -1,43 +1,38 @@
-.trainers-page {
-    padding: 2rem;
+.trainers-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 40px;
 }
 
-.trainers-title {
-    font-size: 2rem;
-    font-weight: bold;
-    margin-bottom: 1.5rem;
+.trainers-container h1 {
+    font-size: 32px;
+    margin-bottom: 20px;
 }
 
-.trainers-grid {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 1.5rem;
-}
-
-@media (min-width: 768px) {
-    .trainers-grid {
-        grid-template-columns: 1fr 1fr;
-    }
-}
-
-@media (min-width: 1024px) {
-    .trainers-grid {
-        grid-template-columns: 1fr 1fr 1fr;
-    }
+.trainer-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
 }
 
 .trainer-card {
-    border: 1px solid #e5e7eb;
-    padding: 1rem;
-    border-radius: 1rem;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 12px;
+    padding: 20px;
+    width: 250px;
+    text-align: center;
+    box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.1);
 }
 
-.trainer-name {
-    font-size: 1.25rem;
-    font-weight: 600;
+.trainer-card h2 {
+    margin-bottom: 10px;
+    font-size: 22px;
 }
 
-.trainer-specialty {
-    color: #6b7280;
+.trainer-card p {
+    font-size: 16px;
+    color: #666;
 }
