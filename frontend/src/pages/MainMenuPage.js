@@ -15,7 +15,7 @@ const MainMenuPage = () => {
           Ver Entrenadores
         </button>
         <button onClick={() => navigate('/settings')}>
-          Configuraciones
+          Configuración
         </button>
       </div>
     </div>
