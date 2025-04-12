@@ -1,5 +1,6 @@
 import React from 'react';
 import '../styles/SettingsPage.css';
+import { Link } from 'react-router-dom';
 
 const SettingsPage = () => {
     return (
@@ -8,17 +9,23 @@ const SettingsPage = () => {
 
             <div className="settings-section">
                 <h2>Cuenta</h2>
-                <button>Cambiar contraseña</button>
+                <Link to="/change-password">
+                    <button>Cambiar contraseña</button>
+                </Link>
             </div>
 
             <div className="settings-section">
                 <h2>Notificaciones</h2>
-                <button>Gestionar notificaciones</button>
+                <Link to="/manage-notifications">
+                    <button>Gestionar notificaciones</button>
+                </Link>
             </div>
 
             <div className="settings-section">
                 <h2>Preferencias</h2>
-                <button>Cambiar idioma</button>
+                <Link to="/change-language">
+                    <button>Cambiar idioma</button>
+                </Link>
             </div>
         </div>
     );
