@@ -30,9 +30,10 @@
 .trainer-card h2 {
     margin-bottom: 10px;
     font-size: 22px;
+    color: #bda361;
 }
 
 .trainer-card p {
     font-size: 16px;
-    color: #666;
+    color: #bda361;
 }
