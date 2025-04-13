@@ -30,11 +30,37 @@ public class InscripcionService {
         Clase clase = claseRepository.findById(inscripcion.getClase().getId())
                 .orElseThrow(() -> new RuntimeException("Clase no encontrada"));
 
+        // Verificar si el usuario ya está inscrito en la clase
+        if (inscripcionRepository.existsByUsuarioAndClase(usuario, clase)) {
+            throw new RuntimeException("El usuario ya está inscrito en esta clase");
+        }
+
+        // Verificar si la clase tiene cupo disponible
+        if (clase.getInscripciones().size() >= clase.getCupoMaximo()) {
+            throw new RuntimeException("Cupo máximo alcanzado");
+        }
+
         // Establecer las relaciones
         inscripcion.setUsuario(usuario);
         inscripcion.setClase(clase);
 
         // Guardar la inscripción
         return inscripcionRepository.save(inscripcion);
+    }
+
+    public Optional<Inscripcion> findById(Long id) {
+        return inscripcionRepository.findById(id);
+    }
+
+    public List<Inscripcion> findAll() {
+        return inscripcionRepository.findAll();
+    }
+
+    public void deleteById(Long id) {
+        inscripcionRepository.deleteById(id);
+    }
+
+    public boolean existsByUsuarioAndClase(Usuario usuario, Clase clase) {
+        return inscripcionRepository.existsByUsuarioAndClase(usuario, clase);
     }
 }

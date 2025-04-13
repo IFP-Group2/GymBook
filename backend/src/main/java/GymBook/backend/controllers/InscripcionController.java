@@ -2,6 +2,7 @@ package GymBook.backend.controllers;
 
 import GymBook.backend.entities.Inscripcion;
 import GymBook.backend.services.InscripcionService;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -29,8 +30,15 @@ public class InscripcionController {
     }
 
     @PostMapping
-    public ResponseEntity<Inscripcion> createInscripcion(@RequestBody Inscripcion inscripcion) {
-        return ResponseEntity.ok(inscripcionService.save(inscripcion));
+    public ResponseEntity<?> createInscripcion(@RequestBody Inscripcion inscripcion) {
+        try {
+            Inscripcion savedInscripcion = inscripcionService.save(inscripcion);
+            return ResponseEntity.ok(savedInscripcion);
+        } catch (RuntimeException e) {
+            return ResponseEntity.badRequest().body(e.getMessage()); // Devuelve el mensaje de error
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error al hacer la reserva. Intenta de nuevo.");
+        }
     }
 
     @DeleteMapping("/{id}")
