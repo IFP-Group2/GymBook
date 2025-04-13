@@ -9,7 +9,7 @@ public class Clase {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Long id;
 
     @Column(nullable = false, length = 100)
     private String nombre;
@@ -31,8 +31,8 @@ public class Clase {
     // Constructor vacío
     public Clase() {}
 
-    // Constructor con parámetros
-    public Clase(String nombre, LocalDateTime horario, Entrenador entrenador, Disciplina disciplina, Integer cupoMaximo) {
+    public Clase(Long id, String nombre, LocalDateTime horario, Entrenador entrenador, Disciplina disciplina, Integer cupoMaximo) {
+        this.id = id;
         this.nombre = nombre;
         this.horario = horario;
         this.entrenador = entrenador;
@@ -40,9 +40,13 @@ public class Clase {
         this.cupoMaximo = cupoMaximo;
     }
 
-    // Getters y Setters
-    public Integer getId() { return id; }
-    public void setId(Integer id) { this.id = id; }
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     public String getNombre() { return nombre; }
     public void setNombre(String nombre) { this.nombre = nombre; }
