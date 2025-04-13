@@ -8,22 +8,26 @@ public class Disciplina {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Long id;
 
     @Column(nullable = false, length = 50)
     private String nombre;
 
-    // Constructor vacío
+
     public Disciplina() {}
 
-    // Constructor con parámetros
-    public Disciplina(String nombre) {
+    public Disciplina(Long id, String nombre) {
+        this.id = id;
         this.nombre = nombre;
     }
 
-    // Getters y Setters
-    public Integer getId() { return id; }
-    public void setId(Integer id) { this.id = id; }
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     public String getNombre() { return nombre; }
     public void setNombre(String nombre) { this.nombre = nombre; }
