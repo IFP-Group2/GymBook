@@ -38,6 +38,15 @@ public class UsuarioService {
         usuario.setPassword(encodedPassword); // Establecer la contraseña encriptada
         return usuarioRepository.save(usuario); // Guardar el usuario en la base de datos
     }
+    public void testPassword(String rawPassword) {
+        Usuario usuario = usuarioRepository.findByEmail("juan.perez@example.com");
+        if (usuario != null) {
+            boolean matches = checkPassword(rawPassword, usuario.getPassword());
+            System.out.println("Contraseña coincide: " + matches);
+        } else {
+            System.out.println("Usuario no encontrado");
+        }
+    }
 
     public void deleteById(Long id) {
         usuarioRepository.deleteById(id);
@@ -50,4 +59,5 @@ public class UsuarioService {
     public boolean checkPassword(String rawPassword, String encodedPassword) {
         return passwordEncoder.matches(rawPassword, encodedPassword);
     }
+
 }

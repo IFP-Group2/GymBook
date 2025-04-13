@@ -2,7 +2,7 @@ package GymBook.backend.entities;
 
 import jakarta.persistence.*;
 @Entity
-@Table(name = "entrenador")
+@Table(name = "entrenadores")
 public class Entrenador {
     @Id
     private Long usuarioId;
