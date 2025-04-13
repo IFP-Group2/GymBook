@@ -3,28 +3,38 @@ package GymBook.backend.entities;
 import jakarta.persistence.*;
 
 @Entity
+@Table(name = "usuarios")
 public class Usuario {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @Column(nullable = false, length = 100)
     private String nombre;
+
+    @Column(nullable = false, length = 100)
     private String email;
+
+    @Column(nullable = false, length = 255)
     private String password;
+
+    @Column(length = 15)
     private String telefono;
 
     @ManyToOne
     @JoinColumn(name = "rol_id")
     private Rol rol;
 
-    public Usuario() {}
+    public Usuario() {
+    }
 
-    public Usuario(Long id, Rol rol, String telefono, String password, String email, String nombre) {
+    public Usuario(Long id, String nombre, String email, String password, String telefono, Rol rol) {
         this.id = id;
-        this.rol = rol;
-        this.telefono = telefono;
-        this.password = password;
-        this.email = email;
         this.nombre = nombre;
+        this.email = email;
+        this.password = password;
+        this.telefono = telefono;
+        this.rol = rol;
     }
 
     public Long getId() {
@@ -75,3 +85,4 @@ public class Usuario {
         this.rol = rol;
     }
 }
+
