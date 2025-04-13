@@ -11,11 +11,8 @@ import ManageNotificationsPage from './pages/ManageNotificationsPage';
 import DarkModePage from './pages/DarkModePage';
 import ForgotPasswordPage from './pages/ForgotPasswordPage';
 
-
-
 function App() {
     return (
-        //Router que crea la ruta entre las paginas
         <Router>
             <div className="App">
                 <Routes>

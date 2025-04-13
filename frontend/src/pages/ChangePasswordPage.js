@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import axios from 'axios';
 import '../styles/ChangePasswordPage.css';
 
 const ChangePasswordPage = () => {
@@ -7,7 +8,7 @@ const ChangePasswordPage = () => {
     const [confirmPassword, setConfirmPassword] = useState('');
     const [message, setMessage] = useState('');
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         if (!currentPassword || !newPassword || !confirmPassword) {
             setMessage('Por favor, completa todos los campos.');
@@ -18,8 +19,15 @@ const ChangePasswordPage = () => {
             return;
         }
 
-        // Aquí podrías hacer una petición al servidor en el futuro
-        setMessage('¡Contraseña cambiada exitosamente!');
+        try {
+            const response = await axios.post('http://localhost:8080/auth/change-password', {
+                currentPassword,
+                newPassword,
+            });
+            setMessage('¡Contraseña cambiada exitosamente!');
+        } catch (error) {
+            setMessage('Error al cambiar la contraseña.');
+        }
 
         // Limpiar campos
         setCurrentPassword('');
@@ -30,7 +38,6 @@ const ChangePasswordPage = () => {
     return (
         <div className="settings-subpage">
             <h1>Cambiar Contraseña</h1>
-
             <form onSubmit={handleSubmit} className="change-password-form">
                 <input
                     type="password"
@@ -52,10 +59,9 @@ const ChangePasswordPage = () => {
                 />
                 <button type="submit">Cambiar Contraseña</button>
             </form>
-
             {message && <p className="message">{message}</p>}
         </div>
     );
 };
 
-export default ChangePasswordPage;
+export default ChangePasswordPage
