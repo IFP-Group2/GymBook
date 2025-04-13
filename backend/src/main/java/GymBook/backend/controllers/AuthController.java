@@ -21,7 +21,7 @@ public class AuthController {
     }
 
     @PostMapping("/login")
-    public ResponseEntity<Map<String, String>> login(@Valid @RequestBody Usuario loginRequest) {
+    public ResponseEntity<Map<String, String>> login(@RequestBody Usuario loginRequest) {
         Map<String, String> response = new HashMap<>();
 
         Usuario usuario = usuarioService.findByEmail(loginRequest.getEmail());
