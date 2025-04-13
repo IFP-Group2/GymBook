@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import axios from 'axios';
 import '../styles/BookClassPage.css';
 
 const BookClassPage = () => {
@@ -31,8 +32,24 @@ const BookClassPage = () => {
     ];
 
     // Función al hacer clic en "Reservar"
-    const handleReservation = (className) => {
-        setMessage(`¡Reserva exitosa para la clase: ${className}!`);
+    const handleReservation = async (className, classId) => {
+        // Datos de la inscripción (tú puedes obtener el email del usuario desde el contexto, si es necesario)
+        const userEmail = "usuario@ejemplo.com"; // Aquí deberías usar el email real del usuario si lo tienes.
+
+        const reservationData = {
+            classId: classId,
+            className: className,
+            date: '2025-06-20', // Aquí debes usar la fecha real de la clase seleccionada
+            time: '10:00', // Aquí debes usar la hora real de la clase
+            userEmail: userEmail
+        };
+
+        try {
+            const response = await axios.post('http://localhost:8080/inscripciones', reservationData);
+            setMessage(`¡Reserva exitosa para la clase: ${className}!`);
+        } catch (error) {
+            setMessage('Error al hacer la reserva. Intenta de nuevo.');
+        }
     };
 
     return (
@@ -46,7 +63,7 @@ const BookClassPage = () => {
                         <p><strong>Entrenador:</strong> {item.trainer}</p>
                         <p><strong>Fecha:</strong> {item.date}</p>
                         <p><strong>Hora:</strong> {item.time}</p>
-                        <button onClick={() => handleReservation(item.name)}>Reservar</button>
+                        <button onClick={() => handleReservation(item.name, item.id)}>Reservar</button>
                     </div>
                 ))}
             </div>
