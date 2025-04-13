@@ -36,7 +36,7 @@ public class UsuarioController {
     }
 
     @PostMapping
-    public ResponseEntity<Usuario> createUsuario(@Valid @RequestBody Usuario usuario) {
+    public ResponseEntity<Usuario> createUsuario(@RequestBody Usuario usuario) {
         if (usuario.getRol() == null || usuario.getRol().getId() == null) {
             return ResponseEntity.badRequest().body(null);
         }
