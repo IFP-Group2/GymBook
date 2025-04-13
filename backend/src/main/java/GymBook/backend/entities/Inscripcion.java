@@ -1,12 +1,12 @@
 package GymBook.backend.entities;
 
 import jakarta.persistence.*;
+
 import java.time.LocalDate;
 
 @Entity
 @Table(name = "inscripciones")
 public class Inscripcion {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -19,19 +19,9 @@ public class Inscripcion {
     @JoinColumn(name = "clase_id", nullable = false)
     private Clase clase;
 
-    @Column(name = "fecha_inscripcion", nullable = false)
     private LocalDate fechaInscripcion;
 
-    // Constructor vacío
-    public Inscripcion() {}
-
-    // Constructor con parámetros
-    public Inscripcion(Usuario usuario, Clase clase, LocalDate fechaInscripcion) {
-        this.usuario = usuario;
-        this.clase = clase;
-        this.fechaInscripcion = fechaInscripcion;
-    }
-
+    // Getters y Setters
     public Long getId() {
         return id;
     }
@@ -40,12 +30,27 @@ public class Inscripcion {
         this.id = id;
     }
 
-    public Usuario getUsuario() { return usuario; }
-    public void setUsuario(Usuario usuario) { this.usuario = usuario; }
+    public Usuario getUsuario() {
+        return usuario;
+    }
 
-    public Clase getClase() { return clase; }
-    public void setClase(Clase clase) { this.clase = clase; }
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
+    }
 
-    public LocalDate getFechaInscripcion() { return fechaInscripcion; }
-    public void setFechaInscripcion(LocalDate fechaInscripcion) { this.fechaInscripcion = fechaInscripcion; }
+    public Clase getClase() {
+        return clase;
+    }
+
+    public void setClase(Clase clase) {
+        this.clase = clase;
+    }
+
+    public LocalDate getFechaInscripcion() {
+        return fechaInscripcion;
+    }
+
+    public void setFechaInscripcion(LocalDate fechaInscripcion) {
+        this.fechaInscripcion = fechaInscripcion;
+    }
 }
