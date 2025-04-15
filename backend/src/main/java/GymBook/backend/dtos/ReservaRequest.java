@@ -4,6 +4,14 @@ public class ReservaRequest {
     private Long classId;
     private String userEmail;
 
+    public ReservaRequest() {
+    }
+
+    public ReservaRequest(Long classId, String userEmail) {
+        this.classId = classId;
+        this.userEmail = userEmail;
+    }
+
     public Long getClassId() {
         return classId;
     }

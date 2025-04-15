@@ -3,7 +3,6 @@ package GymBook.backend.controllers;
 import GymBook.backend.dtos.LoginRequest;
 import GymBook.backend.entities.Usuario;
 import GymBook.backend.services.UsuarioService;
-import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
