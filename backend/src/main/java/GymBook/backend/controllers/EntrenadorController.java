@@ -5,6 +5,7 @@ import GymBook.backend.entities.Usuario;
 import GymBook.backend.services.EntrenadorService;
 import GymBook.backend.services.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -48,8 +49,14 @@ public class EntrenadorController {
             return ResponseEntity.badRequest().body(null);
         }
 
-        entrenador.setUsuario(usuarioOptional.get()); // Asigna el usuario existente
-        return ResponseEntity.ok(entrenadorService.save(entrenador));
+        // Asigna el usuario existente al entrenador
+        entrenador.setUsuario(usuarioOptional.get());
+
+        // Guarda el entrenador en la base de datos
+        Entrenador savedEntrenador = entrenadorService.save(entrenador);
+
+        // Devuelve el entrenador creado con el código 201 (CREATED)
+        return ResponseEntity.status(HttpStatus.CREATED).body(savedEntrenador);
     }
 
     @DeleteMapping("/{id}")
