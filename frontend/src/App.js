@@ -6,7 +6,7 @@ import MainMenuPage from './pages/MainMenuPage';
 import BookClassPage from './pages/BookClassPage';
 import TrainersPage from './pages/TrainersPage';
 import SettingsPage from './pages/SettingsPage';
-import ChangePasswordPage from './pages/ChangePasswordPage';
+import EditAccountPage from './pages/EditAccountPage';
 import ManageNotificationsPage from './pages/ManageNotificationsPage';
 import DarkModePage from './pages/DarkModePage';
 import ForgotPasswordPage from './pages/ForgotPasswordPage';
@@ -24,7 +24,7 @@ function App() {
                     <Route path="/book-class" element={<BookClassPage />} />
                     <Route path="/trainers" element={<TrainersPage />} />
                     <Route path="/settings" element={<SettingsPage />} />
-                    <Route path="/change-password" element={<ChangePasswordPage />} />
+                    <Route path="/edit-account" element={<EditAccountPage />} />
                     <Route path="/manage-notifications" element={<ManageNotificationsPage />} />
                     <Route path="/dark-mode" element={<DarkModePage />} />
                     <Route path="/forgot-password" element={<ForgotPasswordPage />} />

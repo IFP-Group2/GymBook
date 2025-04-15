@@ -9,8 +9,8 @@ const SettingsPage = () => {
 
             <div className="settings-section">
                 <h2>Cuenta</h2>
-                <Link to="/change-password">
-                    <button>Cambiar contraseña</button>
+                <Link to="/edit-account">
+                    <button>Editar cuenta</button>
                 </Link>
             </div>
 
