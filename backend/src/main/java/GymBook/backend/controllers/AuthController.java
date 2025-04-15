@@ -6,6 +6,7 @@ import GymBook.backend.services.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
@@ -18,8 +19,12 @@ public class AuthController {
     @Autowired
     private final UsuarioService usuarioService;
 
-    public AuthController(UsuarioService usuarioService) {
+    @Autowired
+    private final BCryptPasswordEncoder passwordEncoder;
+
+    public AuthController(UsuarioService usuarioService, BCryptPasswordEncoder passwordEncoder) {
         this.usuarioService = usuarioService;
+        this.passwordEncoder = passwordEncoder;
     }
 
     @PostMapping("/login")
@@ -44,5 +49,19 @@ public class AuthController {
 
         response.put("message", "Login exitoso");
         return ResponseEntity.ok(response);
+    }
+
+    @PostMapping("/reset-password")
+    public ResponseEntity<?> resetPassword(
+            @RequestParam String email,
+            @RequestParam String newPassword) {
+        Usuario usuario = usuarioService.findByEmail(email);
+        if (usuario == null) {
+            return ResponseEntity.badRequest().body("Usuario no encontrado");
+        }
+
+        usuario.setPassword(passwordEncoder.encode(newPassword));
+        usuarioService.save(usuario);
+        return ResponseEntity.ok("Contraseña actualizada correctamente");
     }
 }

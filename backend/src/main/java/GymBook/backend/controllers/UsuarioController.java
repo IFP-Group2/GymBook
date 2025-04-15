@@ -51,14 +51,23 @@ public class UsuarioController {
         }
 
         usuario.setRol(rolOptional.get());
-        usuario.setTipoUsuario(usuario.getTipoUsuario()); // Asegúrate de que se guarde el tipo de usuario
+        return ResponseEntity.ok(usuarioService.save(usuario));
+    }
 
-        try {
-            Usuario savedUsuario = usuarioService.save(usuario);
-            return ResponseEntity.ok(savedUsuario);
-        } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
+    @PutMapping("/{id}")
+    public ResponseEntity<Usuario> updateUsuario(@PathVariable Long id, @RequestBody Usuario usuario) {
+        Optional<Usuario> usuarioOptional = usuarioService.findById(id);
+        if (usuarioOptional.isEmpty()) {
+            return ResponseEntity.notFound().build();
         }
+
+        Usuario existingUsuario = usuarioOptional.get();
+        existingUsuario.setNombre(usuario.getNombre());
+        existingUsuario.setEmail(usuario.getEmail());
+        existingUsuario.setPassword(usuario.getPassword()); // Asegúrate de encriptar la contraseña si es necesario
+
+        Usuario updatedUsuario = usuarioService.save(existingUsuario);
+        return ResponseEntity.ok(updatedUsuario);
     }
 
     @GetMapping("/email/{email}")
