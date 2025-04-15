@@ -37,3 +37,18 @@
     font-size: 16px;
     color: #bda361;
 }
+
+.trainers-add button {
+    padding: 15px;
+    margin-top: 15px;
+    font-size: 18px;
+    border: none;
+    background-color: #4CAF50;
+    color: white;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.trainers-add button:hover {
+    background-color: #45a049;
+}
