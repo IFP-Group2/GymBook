@@ -46,12 +46,13 @@ public class UsuarioController {
             return ResponseEntity.badRequest().body(null);
         }
 
-        usuario.setRol(rolOptional.get()); // Asignar el rol existente
+        usuario.setRol(rolOptional.get());
+        usuario.setTipoUsuario(usuario.getTipoUsuario()); // Asegúrate de que se guarde el tipo de usuario
+
         try {
             Usuario savedUsuario = usuarioService.save(usuario);
             return ResponseEntity.ok(savedUsuario);
         } catch (Exception e) {
-            e.printStackTrace(); // Imprimir la excepción en la consola
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
         }
     }
