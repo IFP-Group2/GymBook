@@ -35,8 +35,7 @@ public class UsuarioControllerTest {
     }
 
     @Test
-    public void testCreateUsuario() {
-        // Crear un rol simulado
+    public void testCreateUsuarioSuccess() {
         Rol rol = new Rol();
         rol.setId(1L);
 
@@ -45,7 +44,7 @@ public class UsuarioControllerTest {
         usuario.setEmail("testuser@example.com");
         usuario.setPassword("password123");
         usuario.setTelefono("123456789");
-        usuario.setRol(rol); // Asignar un rol al usuario
+        usuario.setRol(rol);
 
         when(rolService.findById(1L)).thenReturn(Optional.of(rol));
         when(usuarioService.save(any(Usuario.class))).thenReturn(usuario);
@@ -104,5 +103,20 @@ public class UsuarioControllerTest {
 
         assertEquals(404, response.getStatusCodeValue());
         verify(usuarioService, times(1)).findByEmail("testuser@example.com");
+    }
+
+    @Test
+    public void testCreateUsuarioBadRequestNoRol() {
+        Usuario usuario = new Usuario();
+        usuario.setNombre("Test User");
+        usuario.setEmail("testuser@example.com");
+        usuario.setPassword("password123");
+        usuario.setTelefono("123456789");
+        usuario.setRol(null); // Sin rol
+
+        ResponseEntity<Usuario> response = usuarioController.createUsuario(usuario);
+
+        assertEquals(400, response.getStatusCodeValue());
+        assertNull(response.getBody());
     }
 }
