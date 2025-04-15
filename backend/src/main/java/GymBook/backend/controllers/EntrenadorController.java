@@ -52,11 +52,13 @@ public class EntrenadorController {
         // Asigna el usuario existente al entrenador
         entrenador.setUsuario(usuarioOptional.get());
 
-        // Guarda el entrenador en la base de datos
-        Entrenador savedEntrenador = entrenadorService.save(entrenador);
-
-        // Devuelve el entrenador creado con el código 201 (CREATED)
-        return ResponseEntity.status(HttpStatus.CREATED).body(savedEntrenador);
+        try {
+            // Guarda el entrenador en la base de datos
+            Entrenador savedEntrenador = entrenadorService.save(entrenador);
+            return ResponseEntity.status(HttpStatus.CREATED).body(savedEntrenador);
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
+        }
     }
 
     @DeleteMapping("/{id}")
