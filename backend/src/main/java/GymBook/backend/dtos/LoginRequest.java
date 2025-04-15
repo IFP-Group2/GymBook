@@ -7,13 +7,6 @@ public class LoginRequest {
     private String password;
     private TipoUsuario tipoUsuario;
 
-    public LoginRequest() {}
-
-    public LoginRequest(String email, String password, TipoUsuario tipoUsuario) {
-        this.email = email;
-        this.password = password;
-        this.tipoUsuario = tipoUsuario;
-    }
 
     public String getEmail() {
         return email;
