@@ -17,6 +17,7 @@ import java.util.List;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.mockito.Mockito.*;
 
 public class EntrenadorControllerTest {
@@ -91,7 +92,7 @@ public class EntrenadorControllerTest {
         ResponseEntity<Entrenador> response = entrenadorController.createEntrenador(entrenador);
 
         assertEquals(400, response.getStatusCodeValue());
-        assertEquals(null, response.getBody());
+        assertNull(response.getBody());
     }
 
     @Test
