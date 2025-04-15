@@ -87,7 +87,7 @@ const SignUpPage = () => {
                     onChange={handleChange}
                 >
                     <option value="usuario">Usuario</option>
-                    <option value="admin">Administrador</option>
+                    <option value="admin">Entrenador</option>
                 </select>
 
                 <button type="submit">Registrarse</button>
