@@ -12,6 +12,7 @@ import DarkModePage from './pages/DarkModePage';
 import ForgotPasswordPage from './pages/ForgotPasswordPage';
 import SignUpPage from './pages/SignUpPage';
 import AddTrainerPage from './pages/AddTrainerPage';
+import EditTrainerPage from './pages/EditTrainerPage'
 
 function App() {
     return (
@@ -30,6 +31,8 @@ function App() {
                     <Route path="/forgot-password" element={<ForgotPasswordPage />} />
                     <Route path="/signup" element={<SignUpPage />} />
                     <Route path="/add-trainer" element={<AddTrainerPage />} />
+                    <Route path="/edit-trainer/:id" element={<EditTrainerPage />} />
+                    
                 </Routes>
             </div>
         </Router>
