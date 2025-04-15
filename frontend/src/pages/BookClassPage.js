@@ -31,21 +31,22 @@ const BookClassPage = () => {
         }
     ];
 
-   const handleReservation = async (className, classId) => {
-    const userEmail = "usuario@ejemplo.com"; // Aquí deberías usar el email real del usuario si lo tienes.
+    // Función para manejar la reserva de una clase
+    const handleReservation = async (className, classId) => {
+        const userEmail = "usuario@ejemplo.com"; // Aquí deberías usar el email real del usuario si lo tienes.
 
-    const reservationData = {
-        classId: classId,
-        userEmail: userEmail
+        const reservationData = {
+            classId: classId,
+            userEmail: userEmail
+        };
+
+        try {
+            await axios.post('http://localhost:8080/inscripciones', reservationData);
+            setMessage(`¡Reserva exitosa para la clase: ${className}!`);
+        } catch (error) {
+            setMessage('Error al hacer la reserva. Intenta de nuevo.');
+        }
     };
-
-    try {
-        await axios.post('http://localhost:8080/inscripciones', reservationData);
-        setMessage(`¡Reserva exitosa para la clase: ${className}!`);
-    } catch (error) {
-        setMessage('Error al hacer la reserva. Intenta de nuevo.');
-    }
-};
 
     return (
         <div className="book-class-container">
