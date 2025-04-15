@@ -1,5 +1,6 @@
 package GymBook.backend.controllers;
 
+import GymBook.backend.dtos.LoginRequest;
 import GymBook.backend.entities.Usuario;
 import GymBook.backend.services.UsuarioService;
 import jakarta.validation.Valid;
@@ -21,7 +22,7 @@ public class AuthController {
     }
 
     @PostMapping("/login")
-    public ResponseEntity<Map<String, String>> login(@RequestBody Usuario loginRequest) {
+    public ResponseEntity<Map<String, String>> login(@RequestBody LoginRequest loginRequest) {
         Map<String, String> response = new HashMap<>();
 
         Usuario usuario = usuarioService.findByEmail(loginRequest.getEmail());
@@ -32,6 +33,11 @@ public class AuthController {
 
         if (!usuarioService.checkPassword(loginRequest.getPassword(), usuario.getPassword())) {
             response.put("message", "Credenciales inválidas");
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(response);
+        }
+
+        if (usuario.getTipoUsuario() != loginRequest.getTipoUsuario()) {
+            response.put("message", "Tipo de usuario incorrecto");
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(response);
         }
 

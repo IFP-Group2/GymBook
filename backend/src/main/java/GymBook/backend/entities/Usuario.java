@@ -26,7 +26,7 @@ public class Usuario {
     @JoinColumn(name = "rol_id")
     private Rol rol;
 
-        @Enumerated(EnumType.STRING)
+    @Enumerated(EnumType.STRING)
     private TipoUsuario tipoUsuario;
 
     public Usuario() {
