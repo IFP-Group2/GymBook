@@ -21,11 +21,13 @@ public class InscripcionController {
 
     private final InscripcionService inscripcionService;
     private final UsuarioService usuarioService;
-    private  final ClaseService claseService;
+    private final ClaseService claseService;
 
 
-    public InscripcionController(InscripcionService inscripcionService) {
+    public InscripcionController(InscripcionService inscripcionService, UsuarioService usuarioService, ClaseService claseService) {
         this.inscripcionService = inscripcionService;
+        this.usuarioService = usuarioService;
+        this.claseService = claseService;
     }
 
     @GetMapping
