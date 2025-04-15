@@ -1,4 +1,4 @@
-package GymBook.backend.enum;
+package GymBook.backend.enums;
 
 public enum TipoUsuario {
 

@@ -1,5 +1,6 @@
 package GymBook.backend.entities;
 
+import GymBook.backend.enums.TipoUsuario;
 import jakarta.persistence.*;
 
 @Entity
@@ -25,6 +26,9 @@ public class Usuario {
     @JoinColumn(name = "rol_id")
     private Rol rol;
 
+        @Enumerated(EnumType.STRING)
+    private TipoUsuario tipoUsuario;
+
     public Usuario() {
     }
 
@@ -35,6 +39,7 @@ public class Usuario {
         this.password = password;
         this.telefono = telefono;
         this.rol = rol;
+        this.tipoUsuario = tipoUsuario;
     }
 
     public Long getId() {
@@ -83,6 +88,14 @@ public class Usuario {
 
     public void setRol(Rol rol) {
         this.rol = rol;
+    }
+
+    public TipoUsuario getTipoUsuario() {
+        return tipoUsuario;
+    }
+
+    public void setTipoUsuario(TipoUsuario tipoUsuario) {
+        this.tipoUsuario = tipoUsuario;
     }
 }
 
