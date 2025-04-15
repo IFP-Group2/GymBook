@@ -31,24 +31,29 @@ const EditTrainerPage = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-
+    
+        if (!name || !especialidad || !experiencia) {
+            alert('Por favor, completa todos los campos.');
+            return;
+        }
+    
         // Crear un objeto con los datos actualizados
         const updatedTrainer = {
             name,
             especialidad,
             experiencia
         };
-
+    
         try {
             // Enviar los datos actualizados a la API
-            const response = await fetch(`http://localhost:8080/api/entrenadores/${id}`, {
+            const response = await fetch(`http://localhost:8080/entrenadores/${id}`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify(updatedTrainer),
             });
-
+    
             if (response.ok) {
                 // Redirigir a la página de entrenadores
                 navigate('/trainers');

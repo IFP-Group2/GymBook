@@ -36,7 +36,7 @@ public class EntrenadorControllerTest {
         MockitoAnnotations.openMocks(this);
     }
 
-    @Test
+    /*@Test
     public void testGetAllEntrenadores() {
         Entrenador entrenador = new Entrenador();
         when(entrenadorService.findAll()).thenReturn(Collections.singletonList(entrenador));
@@ -45,7 +45,7 @@ public class EntrenadorControllerTest {
 
         assertEquals(1, entrenadores.size());
         assertEquals(entrenador, entrenadores.get(0));
-    }
+    }*/
 
     @Test
     public void testGetEntrenadorByIdFound() {

@@ -4,12 +4,10 @@ import { Link } from 'react-router-dom';
 
 const TrainersPage = () => {
     const [trainers, setTrainers] = useState([]);
-
-    // Cargar los entrenadores al montar el componente
     useEffect(() => {
         const fetchTrainers = async () => {
             try {
-                const response = await fetch('http://localhost:8080/api/entrenadores');
+                const response = await fetch('http://localhost:8080/entrenadores');
                 if (response.ok) {
                     const data = await response.json();
                     setTrainers(data);
@@ -24,10 +22,9 @@ const TrainersPage = () => {
         fetchTrainers();
     }, []);
 
-    // Función para eliminar un entrenador
     const deleteTrainer = async (id) => {
         try {
-            const response = await fetch(`http://localhost:8080/api/entrenadores/${id}`, {
+            const response = await fetch(`http://localhost:8080/entrenadores/${id}`, {
                 method: 'DELETE',
             });
 
@@ -48,15 +45,15 @@ const TrainersPage = () => {
 
             <div className="trainer-list">
                 {trainers.map((trainer) => (
-                    <div key={trainer.id} className="trainer-card">
-                        <h2>{trainer.name}</h2>
+                    <div key={trainer.usuarioId} className="trainer-card">
+                        <h2>{trainer.getNombre()}</h2> {/* Asegúrate de que este método esté disponible */}
                         <p><strong>Especialidad:</strong> {trainer.especialidad}</p>
                         <p><strong>Experiencia:</strong> {trainer.experiencia}</p>
                         <div className="trainer-actions">
-                            <Link to={`/edit-trainer/${trainer.id}`}>
+                            <Link to={`/edit-trainer/${trainer.usuarioId}`}>
                                 <button>Editar</button>
                             </Link>
-                            <button onClick={() => deleteTrainer(trainer.id)}>Eliminar</button>
+                            <button onClick={() => deleteTrainer(trainer.usuarioId)}>Eliminar</button>
                         </div>
                     </div>
                 ))}

@@ -14,6 +14,10 @@ public class Entrenador {
     @JoinColumn(name = "usuario_id")
     private Usuario usuario;
 
+    public String getNombre() {
+        return usuario != null ? usuario.getNombre() : null; // Método para obtener el nombre del usuario
+    }
+
     public Entrenador() {
     }
 

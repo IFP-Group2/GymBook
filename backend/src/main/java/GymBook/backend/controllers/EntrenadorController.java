@@ -35,7 +35,10 @@ public class EntrenadorController {
     @GetMapping("/{id}")
     public ResponseEntity<Entrenador> getEntrenadorById(@PathVariable Long id) {
         Optional<Entrenador> entrenador = entrenadorService.findById(id);
-        return entrenador.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
+        return entrenador.map(e -> {
+            // Aquí puedes incluir el nombre del usuario en la respuesta
+            return ResponseEntity.ok(e);
+        }).orElseGet(() -> ResponseEntity.notFound().build());
     }
 
     @PostMapping
