@@ -1,6 +1,7 @@
 package GymBook.backend.services;
 
 import GymBook.backend.entities.Usuario;
+import GymBook.backend.exceptions.UserNotFoundException;
 import GymBook.backend.repositories.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -25,7 +26,8 @@ public class UsuarioService {
     }
 
     public Optional<Usuario> findById(Long id) {
-        return usuarioRepository.findById(id);
+        return Optional.ofNullable(usuarioRepository.findById(id)
+                .orElseThrow(() -> new UserNotFoundException("Usuario no encontrado con ID: " + id)));
     }
 
     public Usuario save(Usuario usuario) {
@@ -38,6 +40,7 @@ public class UsuarioService {
         usuario.setPassword(encodedPassword); // Establecer la contraseña encriptada
         return usuarioRepository.save(usuario); // Guardar el usuario en la base de datos
     }
+
     public void testPassword(String rawPassword) {
         Usuario usuario = usuarioRepository.findByEmail("juan.perez@example.com");
         if (usuario != null) {
