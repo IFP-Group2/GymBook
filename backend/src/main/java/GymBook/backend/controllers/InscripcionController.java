@@ -7,6 +7,7 @@ import GymBook.backend.entities.Usuario;
 import GymBook.backend.services.ClaseService;
 import GymBook.backend.services.InscripcionService;
 import GymBook.backend.services.UsuarioService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -18,9 +19,13 @@ import java.util.Optional;
 @RestController
 @RequestMapping("/inscripciones")
 public class InscripcionController {
-
+    @Autowired
     private final InscripcionService inscripcionService;
+
+    @Autowired
     private final UsuarioService usuarioService;
+
+    @Autowired
     private final ClaseService claseService;
 
 

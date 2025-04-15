@@ -3,6 +3,7 @@ package GymBook.backend.controllers;
 import GymBook.backend.dtos.LoginRequest;
 import GymBook.backend.entities.Usuario;
 import GymBook.backend.services.UsuarioService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -14,6 +15,7 @@ import java.util.Map;
 @RequestMapping("/auth")
 public class AuthController {
 
+    @Autowired
     private final UsuarioService usuarioService;
 
     public AuthController(UsuarioService usuarioService) {

@@ -2,6 +2,7 @@ package GymBook.backend.controllers;
 
 import GymBook.backend.entities.Clase;
 import GymBook.backend.services.ClaseService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -11,6 +12,8 @@ import java.util.Optional;
 @RestController
 @RequestMapping("/clases")
 public class ClaseController {
+
+    @Autowired
     private final ClaseService claseService;
 
     public ClaseController(ClaseService claseService) {

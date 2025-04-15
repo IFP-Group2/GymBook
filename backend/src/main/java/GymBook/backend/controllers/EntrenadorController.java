@@ -4,6 +4,7 @@ import GymBook.backend.entities.Entrenador;
 import GymBook.backend.entities.Usuario;
 import GymBook.backend.services.EntrenadorService;
 import GymBook.backend.services.UsuarioService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -13,7 +14,11 @@ import java.util.Optional;
 @RestController
 @RequestMapping("/entrenadores")
 public class EntrenadorController {
+
+    @Autowired
     private final EntrenadorService entrenadorService;
+
+    @Autowired
     private final UsuarioService usuarioService;
 
     public EntrenadorController(EntrenadorService entrenadorService, UsuarioService usuarioService) {
