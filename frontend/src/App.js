@@ -10,6 +10,7 @@ import ChangePasswordPage from './pages/ChangePasswordPage';
 import ManageNotificationsPage from './pages/ManageNotificationsPage';
 import DarkModePage from './pages/DarkModePage';
 import ForgotPasswordPage from './pages/ForgotPasswordPage';
+import SignUpPage from './pages/SignUpPage';
 
 function App() {
     return (
@@ -26,6 +27,7 @@ function App() {
                     <Route path="/manage-notifications" element={<ManageNotificationsPage />} />
                     <Route path="/dark-mode" element={<DarkModePage />} />
                     <Route path="/forgot-password" element={<ForgotPasswordPage />} />
+                    <Route path="/signup" element={<SignUpPage />} />
                 </Routes>
             </div>
         </Router>

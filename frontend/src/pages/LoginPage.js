@@ -57,6 +57,11 @@ function LoginPage() {
             <div className="forgot-password">
                 <Link to="/forgot-password">¿Olvidaste tu contraseña?</Link>
             </div>
+            <div className="signup-link">
+                <p>¿No tienes cuenta?</p>
+                <Link to="/signup">Crear una cuenta</Link>
+            </div>
+
         </div>
     );
 }
