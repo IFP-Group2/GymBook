@@ -29,6 +29,33 @@ public class AuthController {
     }
 
     @PostMapping("/login")
+    public ResponseEntity<Map<String, Object>> login(@RequestBody LoginRequest loginRequest) {
+        Map<String, Object> response = new HashMap<>();
+
+        Usuario usuario = usuarioService.findByEmail(loginRequest.getEmail());
+        if (usuario == null) {
+            response.put("message", "Credenciales inválidas");
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(response);
+        }
+
+        if (!usuarioService.checkPassword(loginRequest.getPassword(), usuario.getPassword())) {
+            response.put("message", "Credenciales inválidas");
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(response);
+        }
+
+        if (usuario.getTipoUsuario() != loginRequest.getTipoUsuario()) {
+            response.put("message", "Tipo de usuario incorrecto");
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(response);
+        }
+
+        // Devuelve el ID y el correo electrónico del usuario
+        response.put("message", "Login exitoso");
+        response.put("userId", usuario.getId());
+        response.put("email", usuario.getEmail());
+        return ResponseEntity.ok(response);
+    }
+
+    /*@PostMapping("/login")
     public ResponseEntity<Map<String, String>> login(@RequestBody LoginRequest loginRequest) {
         Map<String, String> response = new HashMap<>();
 
@@ -51,7 +78,7 @@ public class AuthController {
         response.put("message", "Login exitoso");
         return ResponseEntity.ok(response);
     }
-
+*/
     @PostMapping("/reset-password")
     public ResponseEntity<?> resetPassword(
             @RequestParam String email,
