@@ -46,7 +46,6 @@ public class InscripcionController {
         return inscripcion.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
     }
 
-
     @PostMapping
     public ResponseEntity<?> createInscripcion(@RequestBody ReservaRequest reservaRequest) {
         Usuario usuario = usuarioService.findByEmail(reservaRequest.getUserEmail());
