@@ -2,25 +2,24 @@ import React, { useState } from 'react'; import axios from 'axios'; import '../s
 
 const ForgotPasswordPage = () => { const [email, setEmail] = useState(''); const [message, setMessage] = useState('');
 
-const handleSubmit = async (e) => {
-    e.preventDefault();
-    if (!email) {
-        setMessage('Por favor, ingresa tu correo electrónico.');
-        return;
-    }
-
-    try {
-        const response = await axios.post('http://localhost:8080/auth/forgot-password', {
-            email,
-        });
-        setMessage('Revisa tu correo para instrucciones de recuperación.');
-    } catch (error) {
-        setMessage('Error al enviar el correo de recuperación.');
-    }
-
-    // Limpiar campo
-    setEmail('');
-};
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        if (!email) {
+            setMessage('Por favor, ingresa tu correo electrónico.');
+            return;
+        }
+    
+        try {
+            const response = await axios.post('http://localhost:8080/auth/forgot-password', {
+                email,
+            });
+            setMessage('Revisa tu correo para instrucciones de recuperación.');
+        } catch (error) {
+            setMessage('Error al enviar el correo de recuperación.');
+        }
+    
+        setEmail('');
+    };
 
 return (
     <div className="forgot-password-container">
