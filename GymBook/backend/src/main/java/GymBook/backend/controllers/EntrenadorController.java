@@ -67,24 +67,26 @@ public class EntrenadorController {
     public ResponseEntity<?> updateEntrenador(@PathVariable Long id, @RequestBody Entrenador entrenador) {
         try {
             if (entrenador.getUsuario() == null || entrenador.getUsuario().getId() == null) {
-                return ResponseEntity.badRequest().body("El ID del usuario es requerido.");
+                return ResponseEntity.badRequest().body("{\"message\": \"El ID del usuario es requerido.\"}");
             }
 
             Optional<Entrenador> existingEntrenador = entrenadorService.findById(id);
             if (!existingEntrenador.isPresent()) {
-                return ResponseEntity.notFound().build();
+                return ResponseEntity.status(HttpStatus.NOT_FOUND).body("{\"message\": \"Entrenador no encontrado.\"}");
             }
 
+            // Actualiza los campos del entrenador
             Entrenador updatedEntrenador = existingEntrenador.get();
             updatedEntrenador.setEspecialidad(entrenador.getEspecialidad());
             updatedEntrenador.setExperiencia(entrenador.getExperiencia());
             updatedEntrenador.setUsuario(entrenador.getUsuario());
 
+            // Guarda el entrenador actualizado
             Entrenador savedEntrenador = entrenadorService.save(updatedEntrenador);
             return ResponseEntity.ok(savedEntrenador);
         } catch (Exception e) {
-            e.printStackTrace();
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error al actualizar el entrenador.");
+            e.printStackTrace(); // Imprime la excepción en los logs
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("{\"message\": \"Error al actualizar el entrenador.\"}");
         }
     }
 
