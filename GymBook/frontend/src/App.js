@@ -21,7 +21,7 @@ function App() {
                 <Routes>
                     <Route path="/" element={<HomePage />} />
                     <Route path="/login" element={<LoginPage />} />
-                    <Route path="/mainmenu" element={<MainMenuPage />} />
+                    <Route path="/mainmenu" element={<MainMenuPage />} />   
                     <Route path="/book-class" element={<BookClassPage />} />
                     <Route path="/trainers" element={<TrainersPage />} />
                     <Route path="/settings" element={<SettingsPage />} />
