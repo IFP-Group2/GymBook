@@ -15,6 +15,7 @@ const EditTrainerPage = () => {
         const fetchUsuarios = async () => {
             try {
                 const res = await fetch('http://localhost:8080/usuarios');
+                if (!res.ok) throw new Error('No se pudieron cargar los usuarios.');
                 const data = await res.json();
                 setUsuarios(data);
             } catch (error) {
@@ -29,15 +30,15 @@ const EditTrainerPage = () => {
         const fetchTrainer = async () => {
             try {
                 const response = await fetch(`http://localhost:8080/entrenadores/${id}`);
-                if (response.ok) {
-                    const data = await response.json();
-                    setTrainer(data);
-                    setEspecialidad(data.especialidad);
-                    setExperiencia(data.experiencia);
-                    setUsuarioId(data.usuarioId);
-                } else {
+                if (!response.ok) {
                     console.error('Error al cargar el entrenador');
+                    return;
                 }
+                const data = await response.json();
+                setTrainer(data);
+                setEspecialidad(data.especialidad);
+                setExperiencia(data.experiencia);
+                setUsuarioId(data.usuarioId);
             } catch (error) {
                 console.error('Error de conexión:', error);
             }
@@ -47,20 +48,20 @@ const EditTrainerPage = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-    
+
         // Validar que todos los campos estén completos
         if (!especialidad || !experiencia || !usuarioId) {
             alert('Por favor, completa todos los campos.');
             return;
         }
-    
+
         // Crear el objeto entrenador con el formato que el backend espera
         const updatedTrainer = {
             especialidad,
             experiencia: parseInt(experiencia),
             usuario: { id: parseInt(usuarioId) }
         };
-    
+
         try {
             // Enviar la solicitud PUT al backend
             const response = await fetch(`http://localhost:8080/entrenadores/${id}`, {
@@ -68,18 +69,16 @@ const EditTrainerPage = () => {
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(updatedTrainer)
             });
-    
+
             // Si la respuesta es exitosa, redirigir a la página de entrenadores
             if (response.ok) {
                 navigate('/trainers');
             } else {
-                // Intentar parsear la respuesta como JSON
                 let errorMessage = 'Error al actualizar el entrenador.';
                 try {
                     const errorData = await response.json();
                     errorMessage = errorData.message || errorMessage;
                 } catch (jsonError) {
-                    // Si no es JSON, leer la respuesta como texto
                     const text = await response.text();
                     errorMessage = text || errorMessage;
                 }

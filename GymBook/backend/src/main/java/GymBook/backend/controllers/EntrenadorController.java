@@ -63,6 +63,7 @@ public class EntrenadorController {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
         }
     }
+
     @PutMapping("/{id}")
     public ResponseEntity<?> updateEntrenador(@PathVariable Long id, @RequestBody Entrenador entrenador) {
         try {
@@ -75,18 +76,24 @@ public class EntrenadorController {
                 return ResponseEntity.status(HttpStatus.NOT_FOUND).body("{\"message\": \"Entrenador no encontrado.\"}");
             }
 
-            // Actualiza los campos del entrenador
+            // Fetch the Usuario entity from the database
+            Optional<Usuario> usuarioOptional = usuarioService.findById(entrenador.getUsuario().getId());
+            if (usuarioOptional.isEmpty()) {
+                return ResponseEntity.badRequest().body("{\"message\": \"Usuario no encontrado.\"}");
+            }
+
+            // Update fields
             Entrenador updatedEntrenador = existingEntrenador.get();
             updatedEntrenador.setEspecialidad(entrenador.getEspecialidad());
             updatedEntrenador.setExperiencia(entrenador.getExperiencia());
-            updatedEntrenador.setUsuario(entrenador.getUsuario());
+            updatedEntrenador.setUsuario(usuarioOptional.get()); // Set the managed Usuario entity
 
-            // Guarda el entrenador actualizado
+            // Save updated trainer
             Entrenador savedEntrenador = entrenadorService.save(updatedEntrenador);
             return ResponseEntity.ok(savedEntrenador);
         } catch (Exception e) {
-            e.printStackTrace(); // Imprime la excepción en los logs
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("{\"message\": \"Error al actualizar el entrenador.\"}");
+            e.printStackTrace(); // Log the exception
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("{\"message\": \"Error al actualizar el entrenador: " + e.getMessage() + "\"}");
         }
     }
 
