@@ -63,6 +63,30 @@ public class EntrenadorController {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
         }
     }
+    @PutMapping("/{id}")
+    public ResponseEntity<?> updateEntrenador(@PathVariable Long id, @RequestBody Entrenador entrenador) {
+        try {
+            if (entrenador.getUsuario() == null || entrenador.getUsuario().getId() == null) {
+                return ResponseEntity.badRequest().body("El ID del usuario es requerido.");
+            }
+
+            Optional<Entrenador> existingEntrenador = entrenadorService.findById(id);
+            if (!existingEntrenador.isPresent()) {
+                return ResponseEntity.notFound().build();
+            }
+
+            Entrenador updatedEntrenador = existingEntrenador.get();
+            updatedEntrenador.setEspecialidad(entrenador.getEspecialidad());
+            updatedEntrenador.setExperiencia(entrenador.getExperiencia());
+            updatedEntrenador.setUsuario(entrenador.getUsuario());
+
+            Entrenador savedEntrenador = entrenadorService.save(updatedEntrenador);
+            return ResponseEntity.ok(savedEntrenador);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error al actualizar el entrenador.");
+        }
+    }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteEntrenador(@PathVariable Long id) {
