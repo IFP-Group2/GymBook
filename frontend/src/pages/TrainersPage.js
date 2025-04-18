@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 const TrainersPage = () => {
     const [trainers, setTrainers] = useState([]);
 
+    // Cargar la lista de entrenadores al montar el componente
     useEffect(() => {
         const fetchTrainers = async () => {
             try {
@@ -23,6 +24,7 @@ const TrainersPage = () => {
         fetchTrainers();
     }, []);
 
+    // Eliminar un entrenador
     const deleteTrainer = async (id) => {
         try {
             const response = await fetch(`http://localhost:8080/entrenadores/${id}`, {
@@ -47,7 +49,7 @@ const TrainersPage = () => {
             <div className="trainer-list">
                 {trainers.map((trainer) => (
                     <div key={trainer.usuarioId} className="trainer-card">
-                        <h2>{trainer.nombre}</h2>
+                        <h2>{trainer.usuario?.nombre || 'Sin nombre'}</h2> {/* Acceder al nombre del usuario */}
                         <p><strong>Especialidad:</strong> {trainer.especialidad}</p>
                         <p><strong>Experiencia:</strong> {trainer.experiencia}</p>
                         <div className="trainer-actions">

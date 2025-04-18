@@ -1,77 +1,102 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import '../styles/AddTrainerPage.css';
 
 const AddTrainerPage = () => {
-    const [formData, setFormData] = useState({
-        name: '',
-        specialty: '',
-        experience: ''
-    });
+    const [especialidad, setEspecialidad] = useState('');
+    const [experiencia, setExperiencia] = useState('');
+    const [usuarioId, setUsuarioId] = useState('');
+    const [usuarios, setUsuarios] = useState([]);
+    const navigate = useNavigate();
 
-    const [message, setMessage] = useState('');
+    // Cargar la lista de usuarios al montar el componente
+    useEffect(() => {
+        const fetchUsuarios = async () => {
+            try {
+                const res = await fetch('http://localhost:8080/usuarios');
+                const data = await res.json();
+                setUsuarios(data);
+            } catch (error) {
+                console.error('Error al cargar usuarios:', error);
+            }
+        };
+        fetchUsuarios();
+    }, []);
 
-    const handleChange = (e) => {
-        const { name, value } = e.target;
-
-        setFormData((prev) => ({
-            ...prev,
-            [name]: value
-        }));
-    };
-
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
 
-        const { name, specialty, experience } = formData;
-
-        if (!name || !specialty || !experience) {
-            setMessage('Por favor, completa todos los campos.');
+        // Validar que todos los campos estén completos
+        if (!especialidad || !experiencia || !usuarioId) {
+            alert('Por favor, completa todos los campos.');
             return;
         }
 
-        // Aquí iría una petición a un backend si lo tuvieras
-        setMessage(`Entrenador ${name} añadido correctamente.`);
+        // Crear el objeto entrenador con el formato que el backend espera
+        const newTrainer = {
+            especialidad,
+            experiencia: parseInt(experiencia),
+            usuario: { id: parseInt(usuarioId) } // Asegúrate de que el ID sea un número
+        };
 
-        setFormData({
-            name: '',
-            specialty: '',
-            experience: ''
-        });
+        try {
+            // Enviar la solicitud POST al backend
+            const response = await fetch('http://localhost:8080/entrenadores', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(newTrainer)
+            });
+
+            // Si la respuesta es exitosa, redirigir a la página de entrenadores
+            if (response.status === 201) {
+                navigate('/trainers');
+            } else {
+                alert('Error al guardar el entrenador.');
+            }
+        } catch (error) {
+            console.error('Error de conexión:', error);
+        }
     };
 
     return (
         <div className="add-trainer-container">
-            <h1>Añadir Entrenador</h1>
-
-            <form className="add-trainer-form" onSubmit={handleSubmit}>
-                <input
-                    type="text"
-                    name="name"
-                    placeholder="Nombre del entrenador"
-                    value={formData.name}
-                    onChange={handleChange}
-                />
-
-                <input
-                    type="text"
-                    name="specialty"
-                    placeholder="Especialidad"
-                    value={formData.specialty}
-                    onChange={handleChange}
-                />
-
-                <input
-                    type="number"
-                    name="experience"
-                    placeholder="Años de experiencia"
-                    value={formData.experience}
-                    onChange={handleChange}
-                />
-
-                <button type="submit">Añadir Entrenador</button>
+            <h1>Añadir nuevo entrenador</h1>
+            <form onSubmit={handleSubmit}>
+                <div className="form-group">
+                    <label>Especialidad:</label>
+                    <input
+                        type="text"
+                        value={especialidad}
+                        onChange={(e) => setEspecialidad(e.target.value)}
+                        required
+                    />
+                </div>
+                <div className="form-group">
+                    <label>Experiencia (años):</label>
+                    <input
+                        type="number"
+                        value={experiencia}
+                        onChange={(e) => setExperiencia(e.target.value)}
+                        required
+                    />
+                </div>
+                <div className="form-group">
+                    <label>Usuario:</label>
+                    <select
+                        value={usuarioId}
+                        onChange={(e) => setUsuarioId(e.target.value)}
+                        required
+                    >
+                        <option value="">Selecciona un usuario</option>
+                        {usuarios.map((usuario) => (
+                            <option key={usuario.id} value={usuario.id}>
+                                {usuario.nombre}
+                            </option>
+                        ))}
+                    </select>
+                </div>
+                <button type="submit" className="submit-button">Añadir Entrenador</button>
             </form>
-
-            {message && <p className="message">{message}</p>}
         </div>
     );
 };

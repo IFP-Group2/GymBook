@@ -3,57 +3,41 @@ import axios from 'axios';
 import '../styles/BookClassPage.css';
 
 const BookClassPage = () => {
-    // Mensaje de éxito de reserva
     const [message, setMessage] = useState('');
 
-    // Datos de clases (falsos, escritos directamente aquí)
     const classes = [
-        {
-            id: 1,
-            name: 'Yoga Avanzado',
-            trainer: 'Celia Martínez',
-            date: '2025-06-20',
-            time: '10:00'
-        },
-        {
-            id: 2,
-            name: 'Crossfit Principiantes',
-            trainer: 'Carlos Pérez',
-            date: '2025-06-21',
-            time: '12:00'
-        },
-        {
-            id: 3,
-            name: 'Pilates Intermedio',
-            trainer: 'Pablo Romero',
-            date: '2025-06-22',
-            time: '09:00'
-        }
+        { id: 1, name: 'Yoga Avanzado', trainer: 'Celia Martínez', date: '2025-06-20', time: '10:00' },
+        { id: 2, name: 'Crossfit Principiantes', trainer: 'Carlos Pérez', date: '2025-06-21', time: '12:00' },
+        { id: 3, name: 'Pilates Intermedio', trainer: 'Pablo Romero', date: '2025-06-22', time: '09:00' }
     ];
 
-    // Función para manejar la reserva de una clase
     const handleReservation = async (className, classId) => {
-        const userEmail = "usuario@ejemplo.com"; // Aquí deberías usar el email real del usuario si lo tienes.
+        const userEmail = localStorage.getItem('userEmail'); // Obtén el correo electrónico del almacenamiento local
+
+        if (!userEmail) {
+            setMessage('Por favor, inicia sesión para hacer una reserva.');
+            return;
+        }
 
         const reservationData = {
             classId: classId,
-            userEmail: userEmail
+            userEmail: userEmail // Usa el correo electrónico del usuario que ha iniciado sesión
         };
 
         try {
-            await axios.post('http://localhost:8080/inscripciones', reservationData);
+            const response = await axios.post('http://localhost:8080/inscripciones', reservationData);
             setMessage(`¡Reserva exitosa para la clase: ${className}!`);
         } catch (error) {
-            setMessage('Error al hacer la reserva. Intenta de nuevo.');
+            console.error('Error al hacer la reserva:', error.response.data);
+            setMessage(`Error al hacer la reserva: ${error.response.data}`);
         }
     };
 
     return (
         <div className="book-class-container">
             <h1>Reservar Clase</h1>
-
             <div className="class-list">
-                {classes.map((item) => (
+                {classes.map ((item) => (
                     <div key={item.id} className="class-card">
                         <h2>{item.name}</h2>
                         <p><strong>Entrenador:</strong> {item.trainer}</p>
@@ -63,10 +47,9 @@ const BookClassPage = () => {
                     </div>
                 ))}
             </div>
-
             {message && <div className="reservation-message">{message}</div>}
         </div>
     );
-}
+};
 
 export default BookClassPage;

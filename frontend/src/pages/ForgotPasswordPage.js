@@ -1,76 +1,41 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { useState } from 'react'; import axios from 'axios'; import '../styles/ForgotPasswordPage.css';
 
-const AddTrainerPage = () => {
-    const [name, setName] = useState('');
-    const [especialidad, setEspecialidad] = useState('');
-    const [experiencia, setExperiencia] = useState('');
-    const navigate = useNavigate();
+const ForgotPasswordPage = () => { const [email, setEmail] = useState(''); const [message, setMessage] = useState('');
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-
-        // Crear un nuevo entrenador
-        const newTrainer = {
-            name,
-            especialidad,
-            experiencia,
-            usuario: { id: 1 } // Asigna un ID de usuario válido (esto debe venir del frontend)
-        };
-
-        try {
-            // Enviar el nuevo entrenador a la API
-            const response = await fetch('http://localhost:8080/entrenadores', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(newTrainer),
-            });
-
-            if (response.status === 201) {
-                // Redirigir a la página de entrenadores
-                navigate('/trainers');
-            } else {
-                console.error('Error al guardar el entrenador');
-            }
-        } catch (error) {
-            console.error('Error de conexión:', error);
+        if (!email) {
+            setMessage('Por favor, ingresa tu correo electrónico.');
+            return;
         }
+    
+        try {
+            const response = await axios.post('http://localhost:8080/auth/forgot-password', {
+                email,
+            });
+            setMessage('Revisa tu correo para instrucciones de recuperación.');
+        } catch (error) {
+            setMessage('Error al enviar el correo de recuperación.');
+        }
+    
+        setEmail('');
     };
 
-    return (
-        <div>
-            <h1>Agregar nuevo entrenador</h1>
-            <form onSubmit={handleSubmit}>
-                <div>
-                    <label>Nombre:</label>
-                    <input
-                        type="text"
-                        value={name}
-                        onChange={(e) => setName(e.target.value)}
-                    />
-                </div>
-                <div>
-                    <label>Especialidad:</label>
-                    <input
-                        type="text"
-                        value={especialidad}
-                        onChange={(e) => setEspecialidad(e.target.value)}
-                    />
-                </div>
-                <div>
-                    <label>Experiencia:</label>
-                    <input
-                        type="text"
-                        value={experiencia}
-                        onChange={(e) => setExperiencia(e.target.value)}
-                    />
-                </div>
-                <button type="submit">Añadir Entrenador</button>
-            </form>
-        </div>
-    );
+return (
+    <div className="forgot-password-container">
+        <h1>Recuperar Contraseña</h1>
+        <form onSubmit={handleSubmit} className="forgot-password-form">
+            <input
+                type="email"
+                placeholder="Correo electrónico"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+            />
+            <button type="submit">Enviar</button>
+        </form>
+        {message && <p className="message">{message}</p>}
+    </div>
+);
 };
 
-export default AddTrainerPage;
+export default ForgotPasswordPage;

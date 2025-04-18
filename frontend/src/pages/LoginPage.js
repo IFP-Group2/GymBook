@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import '../styles/LoginPage.css';
-import { useNavigate, Link } from 'react-router-dom'; // 👈 Importar Link también
+import { useNavigate, Link } from 'react-router-dom'; ;
 
 function LoginPage() {
     const [email, setEmail] = useState('');
@@ -21,7 +20,11 @@ function LoginPage() {
                 password,
             });
             setMessage(response.data.message);
-            navigate('/mainmenu'); // Redirigir si login exitoso
+            if (response.data.message === "Login exitoso") {
+                // Almacena el correo electrónico en el almacenamiento local
+                localStorage.setItem('userEmail', email);
+                navigate('/mainmenu'); // Redirigir si el login es exitoso
+            }
         } catch (error) {
             if (error.response) {
                 setMessage(error.response.data.message || 'Error en el inicio de sesión');
@@ -29,8 +32,7 @@ function LoginPage() {
                 setMessage('Error al conectar con el servidor');
             }
         }
-    };
-    
+    }
 
     return (
         <div className="login-container">
@@ -42,7 +44,7 @@ function LoginPage() {
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                 />
-                <input
+                             <input
                     type="password"
                     placeholder="Contraseña"
                     value={password}
@@ -64,6 +66,8 @@ function LoginPage() {
             </div>
 
         </div>
+
+        
     );
 }
 
