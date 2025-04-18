@@ -8,21 +8,22 @@ const AddTrainerPage = () => {
     const navigate = useNavigate();
 
     const handleSubmit = async (e) => {
-        e.preventDefault();
-    
+        e.preventDefault(); // Evita el envío del formulario por defecto
+
+        // Validar que todos los campos estén completos
         if (!name || !especialidad || !experiencia) {
             alert('Por favor, completa todos los campos.');
             return;
         }
-    
+
         // Crear un nuevo entrenador
         const newTrainer = {
-            name,
+            nombre: name, // Asegúrate de que el nombre del campo coincida con el backend
             especialidad,
             experiencia,
             usuario: { id: 1 } // Asigna un ID de usuario válido (esto debe venir del frontend)
         };
-    
+
         try {
             // Enviar el nuevo entrenador a la API
             const response = await fetch('http://localhost:8080/entrenadores', {
@@ -32,18 +33,20 @@ const AddTrainerPage = () => {
                 },
                 body: JSON.stringify(newTrainer),
             });
-    
+
             if (response.status === 201) {
                 // Redirigir a la página de entrenadores
-                navigate('/trainers');
+                navigate('/trainers'); // Cambia a la ruta correcta
             } else {
                 console.error('Error al guardar el entrenador');
+                alert('Error al crear el entrenador');
             }
         } catch (error) {
             console.error('Error de conexión:', error);
+            alert('Error de conexión. Intenta nuevamente.');
         }
     };
-    
+
     return (
         <div>
             <h1>Agregar nuevo entrenador</h1>

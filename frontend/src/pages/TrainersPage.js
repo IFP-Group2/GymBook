@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 
 const TrainersPage = () => {
     const [trainers, setTrainers] = useState([]);
+
     useEffect(() => {
         const fetchTrainers = async () => {
             try {
@@ -30,7 +31,7 @@ const TrainersPage = () => {
 
             if (response.ok) {
                 // Actualizar la lista de entrenadores
-                setTrainers(trainers.filter(trainer => trainer.id !== id));
+                setTrainers(trainers.filter(trainer => trainer.usuarioId !== id));
             } else {
                 console.error('Error al eliminar el entrenador');
             }
@@ -46,7 +47,7 @@ const TrainersPage = () => {
             <div className="trainer-list">
                 {trainers.map((trainer) => (
                     <div key={trainer.usuarioId} className="trainer-card">
-                        <h2>{trainer.getNombre()}</h2> {/* Asegúrate de que este método esté disponible */}
+                        <h2>{trainer.nombre}</h2>
                         <p><strong>Especialidad:</strong> {trainer.especialidad}</p>
                         <p><strong>Experiencia:</strong> {trainer.experiencia}</p>
                         <div className="trainer-actions">
