@@ -1,31 +1,56 @@
+/* Estilos generales */
 body {
   margin: 0;
   font-family: Arial, sans-serif;
   background-color: #1e1e1e; /* fondo gris oscuro */
   color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
 }
 
 .login-container {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 100px;
+  padding: 20px;
+  width: 100%;
+  max-width: 400px;
+  box-sizing: border-box;
+}
+
+.login-logo {
+  width: 220px !important;
+  max-width: 80%;
+  height: auto;
+ /* margin-bottom: 20px;*/
+}
+
+h1 {
+  color: white;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+h1.h1_inicio {
+  opacity: 0;
 }
 
 .login-form {
   display: flex;
   flex-direction: column;
-  width: 300px;
+  width: 100%;
 }
 
 .login-form input {
   margin: 10px 0 0 0;
-  padding: 10px;
+  padding: 12px;
   font-size: 16px;
   border: 1px solid #ccc;
   border-radius: 4px;
-  background-color: white; /* fondo blanco */
-  color: #000; /* texto negro */
+  background-color: white;
+  color: #000;
 }
 
 .login-form input::placeholder {
@@ -33,38 +58,38 @@ body {
 }
 
 .login-form button {
-  margin: 10px 0;
-  padding: 10px;
+  margin: 15px 0;
+  padding: 12px;
   font-size: 16px;
   background-color: #4CAF50;
   color: white;
   border: none;
   border-radius: 4px;
   cursor: pointer;
+  transition: background-color 0.3s ease;
 }
 
 .login-form button:hover {
   background-color: #45a049;
 }
 
-.forgot-password {
+.forgot-password,
+.signup-link {
   margin-top: 15px;
   text-align: center;
+  width: 100%;
 }
 
-.forgot-password a {
+.forgot-password a,
+.signup-link a {
   color: #4CAF50;
   text-decoration: none;
   font-size: 16px;
 }
 
-.forgot-password a:hover {
+.forgot-password a:hover,
+.signup-link a:hover {
   text-decoration: underline;
-}
-
-.signup-link {
-  margin-top: 10px;
-  text-align: center;
 }
 
 .signup-link p {
@@ -73,17 +98,27 @@ body {
   color: #ccc;
 }
 
-.signup-link a {
-  color: #4CAF50;
-  text-decoration: none;
-  font-size: 16px;
-  font-weight: bold;
-}
-
-.signup-link a:hover {
-  text-decoration: underline;
-}
-
-h1 {
+.login-container p {
+  margin-top: 15px;
+  font-size: 14px;
   color: white;
+  text-align: center;
+}
+
+/* Responsive - opcional si quieres ajustar aún más para pantallas muy pequeñas */
+@media (max-width: 400px) {
+  .login-container {
+    width: 100vw;
+
+  }
+
+  .login-form input,
+  .login-form button {
+    font-size: 15px;
+    padding: 10px;
+  }
+
+  .login-logo {
+    width: 100vw;
+  }
 }

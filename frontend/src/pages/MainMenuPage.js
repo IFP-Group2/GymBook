@@ -5,7 +5,7 @@ import { IconContext } from "react-icons";
 import { LuCalendarDays } from "react-icons/lu";
 import { BsPersonLinesFill } from "react-icons/bs";
 import { FaGears } from "react-icons/fa6";
-
+import BottomNavBar from '../components/BottomNavBar';
 
 
 const MainMenuPage = () => {
@@ -33,6 +33,7 @@ const MainMenuPage = () => {
         </span>
         </button>
       </div>
+      <BottomNavBar />
     </div>
   );
 }

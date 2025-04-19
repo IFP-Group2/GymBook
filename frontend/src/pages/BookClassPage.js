@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import '../styles/BookClassPage.css';
+import BottomNavBar from '../components/BottomNavBar';
+
 
 const BookClassPage = () => {
     const [message, setMessage] = useState('');
@@ -48,6 +50,9 @@ const BookClassPage = () => {
                 ))}
             </div>
             {message && <div className="reservation-message">{message}</div>}
+            
+            {/* Menú */}
+            <BottomNavBar />
         </div>
     );
 };

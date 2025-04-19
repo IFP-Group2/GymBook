@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import '../styles/TrainersPage.css';
 import { Link } from 'react-router-dom';
+import BottomNavBar from '../components/BottomNavBar';
 
 const TrainersPage = () => {
     const [trainers, setTrainers] = useState([]);
@@ -67,6 +68,9 @@ const TrainersPage = () => {
                     <button>Añadir nuevo entrenador</button>
                 </Link>
             </div>
+            
+            {/* Menú */}
+            <BottomNavBar />
         </div>
     );
 };

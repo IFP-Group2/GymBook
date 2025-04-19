@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate, Link } from 'react-router-dom'; 
 import '../styles/LoginPage.css';
+import logo from '../assets/logos/logo_gymbook_dark.png'; // ajusta la ruta si es necesario
 
 function LoginPage() {
     const [email, setEmail] = useState('');
@@ -37,7 +38,10 @@ function LoginPage() {
 
     return (
         <div className="login-container">
-            <h1>Iniciar Sesión</h1>
+            {/* Logo arriba del formulario */}
+            <img src={logo} alt="GymBook logo" className="login-logo" />
+
+            <h1 className="h1_inicio">Inicia sesión</h1>
             <form className="login-form" onSubmit={handleSubmit}>
                 <input
                     type="text"
@@ -63,7 +67,7 @@ function LoginPage() {
             </div>
             <div className="signup-link">
                 <p>¿No tienes cuenta?</p>
-                <Link to="/mainmenu">Crear una cuenta</Link>
+                <Link to="/signup">Crear una cuenta</Link>
             </div>
 
         </div>

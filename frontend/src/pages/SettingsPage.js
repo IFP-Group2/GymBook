@@ -1,6 +1,7 @@
 import React from 'react';
 import '../styles/SettingsPage.css';
 import { Link } from 'react-router-dom';
+import BottomNavBar from '../components/BottomNavBar';
 
 const SettingsPage = () => {
     return (
@@ -27,6 +28,9 @@ const SettingsPage = () => {
                     <button>Cambiar a modo oscuro</button>
                 </Link>
             </div>
+            
+            {/* Menú */}
+            <BottomNavBar />
         </div>
     );
 };
