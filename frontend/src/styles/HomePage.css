@@ -6,12 +6,12 @@
 
 .homepage h1 {
   font-size: 3em;
-  color: #bda361;
+  color: white;
 }
 
 .homepage p {
   font-size: 1.5em;
-  color: #bda361;
+  color: white;
 }
 
 .homepage button {
@@ -21,6 +21,7 @@
   color: white;
   border: none;
   cursor: pointer;
+  border-radius: 4px;
 }
 
 .homepage button:hover {
