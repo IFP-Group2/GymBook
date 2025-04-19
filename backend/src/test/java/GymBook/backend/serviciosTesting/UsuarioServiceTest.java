@@ -128,4 +128,17 @@ public class UsuarioServiceTest {
         assertEquals("Test User", savedUsuario.getNombre());
         verify(usuarioRepository, times(1)).save(usuario);
     }
+
+    @Test
+void testInvalidEmailFormat() {
+    String invalidEmail = "usuario@com";
+    String password = "123456";
+
+    Exception exception = assertThrows(IllegalArgumentException.class, () -> {
+        usuarioService.login(invalidEmail, password);
+    });
+
+    assertEquals("Formato de correo inválido", exception.getMessage());
+}
+
 }
