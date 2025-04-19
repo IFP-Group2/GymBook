@@ -25,3 +25,15 @@
 .menu-options button:hover {
   background-color: #45a049;
 }
+
+.button-content {
+  display: flex;
+  align-items: center;
+  gap: 10px; /* espacio entre icono y texto */
+  /*justify-content: center;*/
+}
+
+/* Estilo del ícono dentro del botón */
+.button_icon {
+  font-size: 22px; /* tamaño del ícono */
+}

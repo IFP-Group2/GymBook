@@ -63,7 +63,7 @@ function LoginPage() {
             </div>
             <div className="signup-link">
                 <p>¿No tienes cuenta?</p>
-                <Link to="/signup">Crear una cuenta</Link>
+                <Link to="/mainmenu">Crear una cuenta</Link>
             </div>
 
         </div>
