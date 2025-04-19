@@ -66,7 +66,7 @@ Esperamos que disfrutes de la aplicación y que te ayude a gestionar tu gimnasio
 
 *La estructura de la base de datos se puede visualizar en el siguiente diagrama:*
 
-![Diagrama de Base de Datos](ruta/a/tu/diagrama.png)  <!-- añadir imagen de la bd -->
+![Diagrama de Base de Datos](docs/diagrama_ER_gymbook.PNG)  <!-- añadir imagen de la bd -->
 
 ## 🎥 Video de Funcionamiento
 
