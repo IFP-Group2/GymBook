@@ -12,8 +12,6 @@
     margin-top: 30px;
     justify-content: center;
     color: #bda361;
-    height: calc(100vh - 60px);
-    overflow-y: auto; /* para que sea scrollable si el contenido es grande */
 }
 
 .class-card {
@@ -22,6 +20,7 @@
     border-radius: 12px;
     padding: 20px;
     width: 250px;
+    height: auto;
     text-align: center;
     box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.1);
 }
