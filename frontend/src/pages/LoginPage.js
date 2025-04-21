@@ -28,6 +28,7 @@ function LoginPage() {
                 navigate('/mainmenu'); // Redirigir si el login es exitoso
             }
         } catch (error) {
+            console.log(error);
             if (error.response) {
                 setMessage(error.response.data.message || 'Error en el inicio de sesión');
             } else {
