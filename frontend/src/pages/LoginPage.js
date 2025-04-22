@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import { useNavigate, Link } from 'react-router-dom'; 
+import { useNavigate, Link } from 'react-router-dom';
 import '../styles/LoginPage.css';
 import logo from '../assets/logos/logo_gymbook_dark.png'; // ajusta la ruta si es necesario
 
+//Funcion LoginPage que contiene la logica del login
 function LoginPage() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -17,16 +18,20 @@ function LoginPage() {
             return;
         }
         try {
+            //Esperamos respuesta
             const response = await axios.post('http://localhost:8080/auth/login', {
                 email,
                 password,
             });
+            //Mensaje de la respuesta
             setMessage(response.data.message);
+            //Condicional if que se ejecuta si el login es exitoso
             if (response.data.message === "Login exitoso") {
                 // Almacena el correo electrónico en el almacenamiento local
                 localStorage.setItem('userEmail', email);
                 navigate('/mainmenu'); // Redirigir si el login es exitoso
             }
+            //Capturamos el error y mostramos un mensaje
         } catch (error) {
             console.log(error);
             if (error.response) {
@@ -36,7 +41,7 @@ function LoginPage() {
             }
         }
     }
-
+    //En el return mostramos los componentes de la pagina LoginPage
     return (
         <div className="login-container">
             {/* Logo arriba del formulario */}
@@ -50,7 +55,7 @@ function LoginPage() {
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                 />
-                             <input
+                <input
                     type="password"
                     placeholder="Contraseña"
                     value={password}
@@ -73,7 +78,7 @@ function LoginPage() {
 
         </div>
 
-        
+
     );
 }
 
