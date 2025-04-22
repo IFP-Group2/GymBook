@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../styles/AddTrainerPage.css';
-
+//Funcion AddTrainerPage que añade un nuevo entrenador
 const AddTrainerPage = () => {
     const [especialidad, setEspecialidad] = useState('');
     const [experiencia, setExperiencia] = useState('');
@@ -57,7 +57,7 @@ const AddTrainerPage = () => {
             console.error('Error de conexión:', error);
         }
     };
-
+    //Return que muestra la apariencia de AdTrainerPage
     return (
         <div className="add-trainer-container">
             <h1>Añadir nuevo entrenador</h1>
