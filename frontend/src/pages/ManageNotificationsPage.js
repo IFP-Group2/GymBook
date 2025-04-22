@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import '../styles/ManageNotificationsPage.css';
-
+//Funcion ManageNotificationsPage que contiene la logica
 const ManageNotificationsPage = () => {
     const [emailNotifications, setEmailNotifications] = useState(false);
     const [smsNotifications, setSmsNotifications] = useState(false);
@@ -11,7 +11,7 @@ const ManageNotificationsPage = () => {
         // Aquí podrías enviar los cambios al servidor en el futuro
         setMessage('¡Preferencias de notificación guardadas correctamente!');
     };
-
+    //Apariencia de la pagina
     return (
         <div className="settings-subpage">
             <h1>Gestionar Notificaciones</h1>
