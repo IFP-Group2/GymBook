@@ -41,7 +41,7 @@ const TrainersPage = () => {
                 console.error('Error al eliminar el entrenador');
             }
         } catch (error) {
-            console.error('Error de conexión:', error);//Mensaje de error
+            console.error('Error de conexión:', error);//Mensaje de error de conexion
         }
     };
     //Apariencia de la pagina
