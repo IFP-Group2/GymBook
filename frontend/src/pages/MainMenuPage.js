@@ -7,7 +7,7 @@ import { BsPersonLinesFill } from "react-icons/bs";
 import { FaGears } from "react-icons/fa6";
 import BottomNavBar from '../components/BottomNavBar';
 
-
+//Funcion flecha MainMenuPage que contiene las principales opciones de menu de la app
 const MainMenuPage = () => {
   const navigate = useNavigate();
   return (
@@ -15,22 +15,22 @@ const MainMenuPage = () => {
       <h1>Bienvenid@ a tu gimnasio</h1>
       <div className="menu-options">
         <button onClick={() => navigate('/book-class')}>
-        <span className="button-content">
-          <IconContext.Provider value={{ className: "button_icon" }}><LuCalendarDays /></IconContext.Provider>
-          Reservar
-        </span>
+          <span className="button-content">
+            <IconContext.Provider value={{ className: "button_icon" }}><LuCalendarDays /></IconContext.Provider>
+            Reservar
+          </span>
         </button>
         <button onClick={() => navigate('/trainers')}>
-        <span className="button-content">
-          <IconContext.Provider value={{ className: "button_icon" }}><BsPersonLinesFill /></IconContext.Provider>
-          Entrenadores
-        </span>
+          <span className="button-content">
+            <IconContext.Provider value={{ className: "button_icon" }}><BsPersonLinesFill /></IconContext.Provider>
+            Entrenadores
+          </span>
         </button>
         <button onClick={() => navigate('/settings')}>
-        <span className="button-content">
-          <IconContext.Provider value={{ className: "button_icon" }}><FaGears /></IconContext.Provider>
-          Configuración
-        </span>
+          <span className="button-content">
+            <IconContext.Provider value={{ className: "button_icon" }}><FaGears /></IconContext.Provider>
+            Configuración
+          </span>
         </button>
       </div>
       <BottomNavBar />

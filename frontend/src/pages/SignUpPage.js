@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import '../styles/SignUpPage.css';
-
+//Funcion SignUpPage para registrar un usuario
 const SignUpPage = () => {
     const [formData, setFormData] = useState({
         name: '',
@@ -55,7 +55,7 @@ const SignUpPage = () => {
             }
         }
     };
-
+    //Aapriencia de la pagina
     return (
         <div className="signup-container">
             <h1>Crear Cuenta</h1>

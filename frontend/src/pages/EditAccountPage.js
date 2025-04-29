@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import '../styles/EditAccountPage.css';
-
+//Funcion que contiene la logica de EditAccountPage
 const EditAccountPage = () => {
+    //Campos del formulario
     const [formData, setFormData] = useState({
         name: '',
         email: '',
@@ -24,12 +25,12 @@ const EditAccountPage = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         const { name, email, password, phone, role } = formData;
-
+        //Condicional que muestra un mensaje si hay algun campo sin rellenar
         if (!name || !email || !password || !phone) {
             setMessage('Por favor, completa todos los campos.');
             return;
         }
-
+        //Try-catch con los mensajes de exito o error al actualizar el perfil
         try {
             await axios.put('http://localhost:8080/usuarios/editar', { name, email, password, phone, role });
             setMessage('Perfil actualizado con éxito.');
@@ -37,7 +38,7 @@ const EditAccountPage = () => {
             setMessage('Error al actualizar el perfil. Intenta de nuevo.');
         }
     };
-
+    //Apariencia de la pagina
     return (
         <div className="edit-account-container">
             <h1>Editar Cuenta</h1>

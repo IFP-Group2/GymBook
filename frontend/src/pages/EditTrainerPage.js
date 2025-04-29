@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-
+//Funcion que contiene la logica de EditTrainersPage
 const EditTrainerPage = () => {
     const { id } = useParams(); // Obtener el ID del entrenador desde la URL
     const navigate = useNavigate();
@@ -89,7 +89,7 @@ const EditTrainerPage = () => {
             console.error('Error de conexión:', error);
         }
     };
-
+    //Apariencia de EditTrainersPage
     return (
         <div>
             <h1>Editar Entrenador</h1>
