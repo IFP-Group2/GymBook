@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../styles/AddTrainerPage.css';
 import BottomNavBar from '../components/BottomNavBar';
+
 //Funcion AddTrainerPage que añade un nuevo entrenador
 const AddTrainerPage = () => {
     const [especialidad, setEspecialidad] = useState('');
