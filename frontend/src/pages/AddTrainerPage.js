@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../styles/AddTrainerPage.css';
+import BottomNavBar from '../components/BottomNavBar';
 
 const AddTrainerPage = () => {
     const [especialidad, setEspecialidad] = useState('');
@@ -97,6 +98,9 @@ const AddTrainerPage = () => {
                 </div>
                 <button type="submit" className="submit-button">Añadir Entrenador</button>
             </form>
+            
+            {/* Menú */}
+            <BottomNavBar />
         </div>
     );
 };

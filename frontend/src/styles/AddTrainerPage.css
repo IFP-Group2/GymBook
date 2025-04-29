@@ -1,47 +1,63 @@
-.add-trainer-container {
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #1e1e1e;
+    color: white;
+  }
+  
+  .add-trainer-container {
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-top: 40px;
-}
-
-.add-trainer-container h1 {
+    margin-top: 80px;
+  }
+  
+  .add-trainer-container h1 {
     font-size: 28px;
-    margin-bottom: 20px;
-}
-
-.add-trainer-form {
+    margin-bottom: 30px;
+    color: white;
+  }
+  
+  form {
     display: flex;
     flex-direction: column;
-    gap: 15px;
     width: 300px;
-}
-
-.add-trainer-form input {
+    gap: 20px;
+  }
+  
+  .form-group {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .form-group label {
+    margin-bottom: 5px;
+    font-size: 16px;
+    color: white;
+  }
+  
+  .form-group input,
+  .form-group select {
     padding: 10px;
     font-size: 16px;
-    border-radius: 8px;
+    border-radius: 4px;
     border: 1px solid #ccc;
-}
-
-.add-trainer-form button {
+    background-color: white;
+    color: #000;
+  }
+  
+  .submit-button {
     padding: 12px;
+    font-size: 16px;
     background-color: #4CAF50;
     color: white;
     border: none;
-    border-radius: 8px;
-    font-size: 16px;
+    border-radius: 6px;
     cursor: pointer;
-}
-
-.add-trainer-form button:hover {
+    transition: background-color 0.3s ease;
+  }
+  
+  .submit-button:hover {
     background-color: #45a049;
-}
-
-.message {
-    margin-top: 20px;
-    font-size: 16px;
-    color: green;
-    font-weight: bold;
-    text-align: center;
-}
+  }
+  
