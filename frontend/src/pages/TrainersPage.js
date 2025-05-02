@@ -1,13 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import '../styles/TrainersPage.css';
 import { Link } from 'react-router-dom';
-
+import BottomNavBar from '../components/BottomNavBar';
+//Funcion TrainersPage con la logica para mostrar los entrenadores
 const TrainersPage = () => {
     const [trainers, setTrainers] = useState([]);
 
     // Cargar la lista de entrenadores al montar el componente
     useEffect(() => {
         const fetchTrainers = async () => {
+            //Bloque try-catch para cargar la lista de entrenadores
             try {
                 const response = await fetch('http://localhost:8080/entrenadores');
                 if (response.ok) {
@@ -26,22 +28,23 @@ const TrainersPage = () => {
 
     // Eliminar un entrenador
     const deleteTrainer = async (id) => {
+        //Bloque try-catch para actualizar la lista de entrenadores tras una eliminacion
         try {
             const response = await fetch(`http://localhost:8080/entrenadores/${id}`, {
                 method: 'DELETE',
             });
 
+            // Actualizar la lista de entrenadores si la respuesta es ok
             if (response.ok) {
-                // Actualizar la lista de entrenadores
                 setTrainers(trainers.filter(trainer => trainer.usuarioId !== id));
             } else {
                 console.error('Error al eliminar el entrenador');
             }
         } catch (error) {
-            console.error('Error de conexión:', error);
+            console.error('Error de conexión:', error);//Mensaje de error de conexion
         }
     };
-
+    //Apariencia de la pagina
     return (
         <div className="trainers-container">
             <h1>Nuestros Entrenadores</h1>
@@ -67,6 +70,9 @@ const TrainersPage = () => {
                     <button>Añadir nuevo entrenador</button>
                 </Link>
             </div>
+
+            {/* Menú */}
+            <BottomNavBar />
         </div>
     );
 };

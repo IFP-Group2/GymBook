@@ -1,35 +1,40 @@
-import React, { useState } from 'react';
-import '../styles/DarkModePage.css'; // ⬅️ Nuevo nombre de tu CSS
+import React, { useState, useEffect } from 'react';
+import '../styles/DarkModePage.css';
+import BottomNavBar from '../components/BottomNavBar';
 
 const DarkModePage = () => {
     const [darkMode, setDarkMode] = useState(false);
 
-    const toggleDarkMode = () => {
-        setDarkMode(!darkMode);
-
-        if (!darkMode) {
-            document.body.style.backgroundColor = '#222';
-            document.body.style.color = '#eee';
+    useEffect(() => {
+        if (darkMode) {
+            document.body.classList.add('dark-mode');
+            document.body.classList.remove('light-mode');
         } else {
-            document.body.style.backgroundColor = '#ffffff';
-            document.body.style.color = '#333';
+            document.body.classList.add('light-mode');
+            document.body.classList.remove('dark-mode');
         }
+    }, [darkMode]);
+
+    const handleToggle = () => {
+        setDarkMode(prevMode => !prevMode);
     };
 
     return (
         <div className="dark-mode-page">
             <h1>Preferencias</h1>
-
             <div className="dark-mode-toggle">
                 <label>
                     <input
                         type="checkbox"
                         checked={darkMode}
-                        onChange={toggleDarkMode}
+                        onChange={handleToggle}
                     />
                     Activar Modo Oscuro
                 </label>
             </div>
+            
+            {/* Menú */}
+            <BottomNavBar />
         </div>
     );
 };

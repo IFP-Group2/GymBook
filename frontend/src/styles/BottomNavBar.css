@@ -1,0 +1,43 @@
+.bottom-nav {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background-color: #1e1e1e;
+    display: flex;
+    justify-content: space-around;
+    padding: 10px 0;
+    border-top: 1px solid #444;
+    z-index: 1000;
+  }
+
+  .bottom-icon {
+  width: 35px;
+  height: 35px;
+  margin-bottom: 2px;
+  /* filter: invert(70%); para que el icono se vea blanco/gris si es oscuro */
+}
+
+.bottom-nav button.active .bottom-icon {
+  filter: invert(50%) sepia(1) saturate(1000%) hue-rotate(90deg); /* color verde activo */
+}
+  
+  .bottom-nav button {
+    background: none;
+    border: none;
+    color: #ccc;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 14px;
+    cursor: pointer;
+  }
+  
+  .bottom-nav button svg {
+    font-size: 35px;
+    margin-bottom: 2px;
+  }
+  
+  .bottom-nav button.active {
+    color: #4CAF50;
+  }
+  

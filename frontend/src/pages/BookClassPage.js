@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import '../styles/BookClassPage.css';
+import BottomNavBar from '../components/BottomNavBar';
 
+//Funcion BookClassPage que contiene la logica de dicha pagina
 const BookClassPage = () => {
     const [message, setMessage] = useState('');
-
+    //Variable que contiene la informacion de los entrenadores (id, nombre de la clase, nombre del entrenador, fecha y hora)
     const classes = [
         { id: 1, name: 'Yoga Avanzado', trainer: 'Celia Martínez', date: '2025-06-20', time: '10:00' },
         { id: 2, name: 'Crossfit Principiantes', trainer: 'Carlos Pérez', date: '2025-06-21', time: '12:00' },
@@ -32,12 +34,12 @@ const BookClassPage = () => {
             setMessage(`Error al hacer la reserva: ${error.response.data}`);
         }
     };
-
+    //Return que muestra en pantalla
     return (
         <div className="book-class-container">
             <h1>Reservar Clase</h1>
             <div className="class-list">
-                {classes.map ((item) => (
+                {classes.map((item) => (
                     <div key={item.id} className="class-card">
                         <h2>{item.name}</h2>
                         <p><strong>Entrenador:</strong> {item.trainer}</p>
@@ -48,6 +50,9 @@ const BookClassPage = () => {
                 ))}
             </div>
             {message && <div className="reservation-message">{message}</div>}
+
+            {/* Menú */}
+            <BottomNavBar />
         </div>
     );
 };

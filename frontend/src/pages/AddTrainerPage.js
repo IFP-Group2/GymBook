@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../styles/AddTrainerPage.css';
+import BottomNavBar from '../components/BottomNavBar';
 
+//Funcion AddTrainerPage que añade un nuevo entrenador
 const AddTrainerPage = () => {
     const [especialidad, setEspecialidad] = useState('');
     const [experiencia, setExperiencia] = useState('');
@@ -57,7 +59,7 @@ const AddTrainerPage = () => {
             console.error('Error de conexión:', error);
         }
     };
-
+    //Return que muestra la apariencia de AdTrainerPage
     return (
         <div className="add-trainer-container">
             <h1>Añadir nuevo entrenador</h1>
@@ -97,6 +99,9 @@ const AddTrainerPage = () => {
                 </div>
                 <button type="submit" className="submit-button">Añadir Entrenador</button>
             </form>
+            
+            {/* Menú */}
+            <BottomNavBar />
         </div>
     );
 };

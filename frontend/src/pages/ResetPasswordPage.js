@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
-
+//Funcion ResetPassword Page que contiene la logica para establecer una nueva contraseña
 const ResetPasswordPage = () => {
     const { token } = useParams(); // Obtener el token de la URL
     const [newPassword, setNewPassword] = useState('');
@@ -32,7 +32,7 @@ const ResetPasswordPage = () => {
         // Limpiar campo
         setNewPassword('');
     };
-
+    //Apariencia de la pagina
     return (
         <div className="reset-password-container">
             <h1>Restablecer Contraseña</h1>

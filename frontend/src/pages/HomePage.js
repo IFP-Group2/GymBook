@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import '../styles/HomePage.css';
 
+//Funcion flecha HomePage que muestra los componentes de la pagina
 const HomePage = () => {
     return (
         <div className="homepage">

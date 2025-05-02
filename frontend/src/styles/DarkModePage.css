@@ -1,20 +1,35 @@
-.dark-mode-page {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-top: 50px;
+/* Estilos para el modo claro */
+body.light-mode {
+  background-color: #ffffff;
+  color: #1e1e1e;
 }
 
-.dark-mode-page h1 {
-    font-size: 28px;
-    margin-bottom: 20px;
+body.light-mode h1{
+  color: #1e1e1e; /* Color oscuro para títulos en modo claro */
+}
+
+/* Estilos para el modo oscuro */
+body.dark-mode {
+  background-color: #1e1e1e;
+  color: #eeeeee;
+}
+
+body.dark-mode h1{
+  color: #eeeeee; /* Color claro para títulos en modo oscuro */
+}
+
+.dark-mode-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 80px;
 }
 
 .dark-mode-toggle {
-    margin-top: 20px;
-    font-size: 18px;
+  margin-top: 20px;
+  font-size: 18px;
 }
 
 .dark-mode-toggle input[type="checkbox"] {
-    margin-right: 10px;
+  margin-right: 10px;
 }
