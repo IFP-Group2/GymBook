@@ -41,17 +41,14 @@ public class UsuarioController {
 
     @PostMapping
     public ResponseEntity<Usuario> createUsuario(@RequestBody Usuario usuario) {
-        if (usuario.getRol() == null || usuario.getRol().getId() == null) {
-            return ResponseEntity.badRequest().body(null);
-        }
-
-        Optional<Rol> rolOptional = rolService.findById(usuario.getRol().getId());
+        Optional<Rol> rolOptional = rolService.findById(1L); // ID 1 corresponde a "Usuario"
         if (rolOptional.isEmpty()) {
-            return ResponseEntity.badRequest().body(null);
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
         }
-
         usuario.setRol(rolOptional.get());
-        return ResponseEntity.ok(usuarioService.save(usuario));
+
+        Usuario savedUsuario = usuarioService.save(usuario);
+        return ResponseEntity.status(HttpStatus.CREATED).body(savedUsuario);
     }
 
     @PutMapping("/{id}")

@@ -14,6 +14,18 @@ public class Entrenador {
     @JoinColumn(name = "usuario_id")
     private Usuario usuario;
 
+    @ManyToOne
+    @JoinColumn(name = "rol_id")
+    private Rol rol;
+
+    public Rol getRol() {
+        return rol;
+    }
+
+    public void setRol(Rol rol) {
+        this.rol = rol;
+    }
+
     public String getNombre() {
         return usuario != null ? usuario.getNombre() : null; // Método para obtener el nombre del usuario
     }

@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 @RestController
@@ -49,34 +50,36 @@ public class InscripcionController {
 
     @PostMapping
     public ResponseEntity<?> createInscripcion(@RequestBody ReservaRequest reservaRequest) {
-        Usuario usuario = usuarioService.findByEmail(reservaRequest.getUserEmail());
-        if (usuario == null) {
-            return ResponseEntity.badRequest().body("Usuario no encontrado");
+        try {
+            Usuario usuario = usuarioService.findByEmail(reservaRequest.getUserEmail());
+            if (usuario == null) {
+                return ResponseEntity.badRequest().body("Usuario no encontrado");
+            }
+
+            Optional<Clase> claseOptional = claseService.findById(reservaRequest.getClassId());
+            if (claseOptional.isEmpty()) {
+                return ResponseEntity.badRequest().body("Clase no encontrada");
+            }
+
+            Clase clase = claseOptional.get();
+            if (clase.getInscripciones().size() >= clase.getCupoMaximo()) {
+                return ResponseEntity.badRequest().body("Cupo máximo alcanzado");
+            }
+
+            Inscripcion inscripcion = new Inscripcion();
+            inscripcion.setUsuario(usuario);
+            inscripcion.setClase(clase);
+            inscripcion.setFechaInscripcion(LocalDate.now());
+
+            Inscripcion savedInscripcion = inscripcionService.save(inscripcion);
+            return ResponseEntity.ok(savedInscripcion);
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error interno del servidor: " + e.getMessage());
         }
-
-        Optional<Clase> claseOptional = claseService.findById(reservaRequest.getClassId());
-        if (claseOptional.isEmpty()) {
-            return ResponseEntity.badRequest().body("Clase no encontrada");
-        }
-
-        Clase clase = claseOptional.get();
-        if (clase.getInscripciones().size() >= clase.getCupoMaximo()) {
-            return ResponseEntity.badRequest().body("Cupo máximo alcanzado");
-        }
-
-        Inscripcion inscripcion = new Inscripcion();
-        inscripcion.setUsuario(usuario);
-        inscripcion.setClase(clase);
-        inscripcion.setFechaInscripcion(LocalDate.now());
-
-        Inscripcion savedInscripcion = inscripcionService.save(inscripcion);
-        return ResponseEntity.ok(savedInscripcion);
     }
-
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteInscripcion(@PathVariable Long id) {
         inscripcionService.deleteById(id);
         return ResponseEntity.noContent().build();
     }
 }
-

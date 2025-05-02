@@ -1,4 +1,4 @@
-/*package GymBook.backend.securityConfig;
+package GymBook.backend.securityConfig;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
@@ -10,10 +10,9 @@ public class WebConfig implements WebMvcConfigurer {
     @Override
     public void addCorsMappings(CorsRegistry registry) {
         registry.addMapping("/**")
-                .allowedOrigins("http://localhost:3001")
-                .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
-                .allowedHeaders("*")
-                .allowCredentials(true);
+                .allowedOrigins("http://localhost:3000") // Permite solicitudes desde el frontend
+                .allowedMethods("GET", "POST", "PUT", "DELETE") // Métodos permitidos
+                .allowedHeaders("*") // Encabezados permitidos
+                .allowCredentials(true); // Permite credenciales (cookies, encabezados de autenticación)
     }
-}*/
-
+}

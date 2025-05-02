@@ -62,5 +62,8 @@ public class UsuarioService {
     public boolean checkPassword(String rawPassword, String encodedPassword) {
         return passwordEncoder.matches(rawPassword, encodedPassword);
     }
+    public Usuario findByResetPasswordToken(String token) {
+        return usuarioRepository.findByResetPasswordToken(token);
+    }
 
 }

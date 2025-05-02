@@ -1,11 +1,13 @@
 package GymBook.backend.entities;
 
 import GymBook.backend.enums.TipoUsuario;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 
 @Entity
 @Table(name = "usuarios")
 public class Usuario {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -22,12 +24,17 @@ public class Usuario {
     @Column(length = 15)
     private String telefono;
 
+    @JsonProperty(access = JsonProperty.Access.READ_ONLY)
     @ManyToOne
     @JoinColumn(name = "rol_id")
     private Rol rol;
 
+    @JsonProperty(access = JsonProperty.Access.READ_ONLY)
     @Enumerated(EnumType.STRING)
     private TipoUsuario tipoUsuario;
+
+    @Column(name = "reset_password_token", length = 255)
+    private String resetPasswordToken;
 
     public Usuario() {
     }
@@ -39,7 +46,6 @@ public class Usuario {
         this.password = password;
         this.telefono = telefono;
         this.rol = rol;
-        this.tipoUsuario = tipoUsuario;
     }
 
     public Long getId() {
@@ -97,5 +103,12 @@ public class Usuario {
     public void setTipoUsuario(TipoUsuario tipoUsuario) {
         this.tipoUsuario = tipoUsuario;
     }
-}
 
+    public String getResetPasswordToken() {
+        return resetPasswordToken;
+    }
+
+    public void setResetPasswordToken(String resetPasswordToken) {
+        this.resetPasswordToken = resetPasswordToken;
+    }
+}
