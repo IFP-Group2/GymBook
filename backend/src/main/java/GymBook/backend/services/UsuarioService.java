@@ -41,6 +41,7 @@ public class UsuarioService {
         return usuarioRepository.save(usuario); // Guardar el usuario en la base de datos
     }
 
+
     public void testPassword(String rawPassword) {
         Usuario usuario = usuarioRepository.findByEmail("juan.perez@example.com");
         if (usuario != null) {
@@ -56,14 +57,25 @@ public class UsuarioService {
     }
 
     public Usuario findByEmail(String email) {
-        return usuarioRepository.findByEmail(email);
+        return usuarioRepository.findByEmail(email); // Asegúrate de que esto esté devolviendo el usuario correcto
     }
 
+
     public boolean checkPassword(String rawPassword, String encodedPassword) {
-        return passwordEncoder.matches(rawPassword, encodedPassword);
+        boolean matches = passwordEncoder.matches(rawPassword, encodedPassword);
+
+        if (matches) {
+            System.out.println("Las contraseñas coinciden.");
+        } else {
+            System.out.println("Las contraseñas no coinciden.");
+        }
+
+        return matches;
     }
+
+
     public Usuario findByResetPasswordToken(String token) {
-        return usuarioRepository.findByResetPasswordToken(token);
+        return usuarioRepository.findByResetPasswordToken(token).orElse(null);
     }
 
     public Usuario login(String email, String password) {

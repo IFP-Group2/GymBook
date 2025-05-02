@@ -4,7 +4,6 @@ import { useNavigate, Link } from 'react-router-dom';
 import '../styles/LoginPage.css';
 import logo from '../assets/logos/logo_gymbook_dark.png'; // ajusta la ruta si es necesario
 
-//Funcion LoginPage que contiene la logica del login
 function LoginPage() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -18,20 +17,16 @@ function LoginPage() {
             return;
         }
         try {
-            //Esperamos respuesta
             const response = await axios.post('http://localhost:8080/auth/login', {
                 email,
                 password,
             });
-            //Mensaje de la respuesta
+            // Mensaje de la respuesta
             setMessage(response.data.message);
-            //Condicional if que se ejecuta si el login es exitoso
             if (response.data.message === "Login exitoso") {
-                // Almacena el correo electrónico en el almacenamiento local
                 localStorage.setItem('userEmail', email);
-                navigate('/mainmenu'); // Redirigir si el login es exitoso
+                navigate('/mainmenu');
             }
-            //Capturamos el error y mostramos un mensaje
         } catch (error) {
             console.log(error);
             if (error.response) {
@@ -40,8 +35,9 @@ function LoginPage() {
                 setMessage('Error al conectar con el servidor');
             }
         }
-    }
-    //En el return mostramos los componentes de la pagina LoginPage
+    };
+
+
     return (
         <div className="login-container">
             {/* Logo arriba del formulario */}
@@ -65,7 +61,7 @@ function LoginPage() {
             </form>
 
             {/* Mensaje de error o éxito */}
-            {message && <p>{message}</p>}
+            {message && <p>{typeof message === 'string' ? message : JSON.stringify(message)}</p>}
 
             {/* Aquí agregamos el "¿Olvidaste tu contraseña?" */}
             <div className="forgot-password">
@@ -75,10 +71,7 @@ function LoginPage() {
                 <p>¿No tienes cuenta?</p>
                 <Link to="/signup">Crear una cuenta</Link>
             </div>
-
         </div>
-
-
     );
 }
 

@@ -31,7 +31,8 @@ function App() {
                     <Route path="/manage-notifications" element={<ManageNotificationsPage />} />
                     <Route path="/dark-mode" element={<DarkModePage />} />
                     <Route path="/forgot-password" element={<ForgotPasswordPage />} />
-                    <Route path="/reset-password/:token" element={<ResetPasswordPage />} />                    <Route path="/signup" element={<SignUpPage />} />
+                    <Route path="/reset-password" element={<ResetPasswordPage />} />
+                    <Route path="/signup" element={<SignUpPage />} />
                     <Route path="/add-trainer" element={<AddTrainerPage />} />
                     <Route path="/edit-trainer/:id" element={<EditTrainerPage />} />
                     

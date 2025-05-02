@@ -1,45 +1,43 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import { useParams } from 'react-router-dom';
-//Funcion ResetPassword Page que contiene la logica para establecer una nueva contraseña
+import { useNavigate } from 'react-router-dom'; 
+
 const ResetPasswordPage = () => {
-    const { token } = useParams(); // Obtener el token de la URL
     const [newPassword, setNewPassword] = useState('');
     const [message, setMessage] = useState('');
+    const navigate = useNavigate(); 
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        if (!newPassword) {
-            setMessage('Por favor, ingresa una nueva contraseña.');
-            return;
-        }
-
+        const token = new URLSearchParams(window.location.search).get('token');
+        console.log("Token:", token); // Verificar que el token está siendo extraído correctamente
+        console.log("New Password:", newPassword); // Verificar que la nueva contraseña es válida
+    
         try {
             const response = await axios.post('http://localhost:8080/auth/reset-password', {
-                token, // Enviar el token
-                newPassword, // Enviar la nueva contraseña
+                token,
+                newPassword
             }, {
-                headers: {
-                    'Content-Type': 'application/json', // Asegúrate de enviar el encabezado correcto
-                },
+                headers: { 'Content-Type': 'application/json' }
             });
-            setMessage('Contraseña actualizada correctamente.');
+            console.log(response); // Verificar respuesta exitosa
+    
+            setMessage('Contraseña restablecida con éxito. Redirigiendo al login...');
+            setTimeout(() => navigate('/login'), 3000);
         } catch (error) {
-            setMessage('Error al actualizar la contraseña.');
-            console.error(error); // Imprime el error en la consola
+            console.error("Error al restablecer la contraseña:", error.response || error);
+            setMessage('Error al restablecer la contraseña.');
         }
-
-        // Limpiar campo
-        setNewPassword('');
     };
-    //Apariencia de la pagina
+    
+    
     return (
-        <div className="reset-password-container">
+        <div className="forgot-password-container">
             <h1>Restablecer Contraseña</h1>
-            <form onSubmit={handleSubmit} className="reset-password-form">
+            <form onSubmit={handleSubmit} className="forgot-password-form">
                 <input
                     type="password"
-                    placeholder="Nueva contraseña"
+                    placeholder="Nueva Contraseña"
                     value={newPassword}
                     onChange={(e) => setNewPassword(e.target.value)}
                 />
