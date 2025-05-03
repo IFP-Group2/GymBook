@@ -23,13 +23,13 @@ const ResetPasswordPage = () => {
             console.log(response); // Verificar respuesta exitosa
     
             setMessage('Contraseña restablecida con éxito. Redirigiendo al login...');
-            setTimeout(() => navigate('/login'), 3000);
+            // Redirigir después de 3 milisegundos
+            setTimeout(() => navigate('/login'), 3);
         } catch (error) {
             console.error("Error al restablecer la contraseña:", error.response || error);
             setMessage('Error al restablecer la contraseña.');
         }
     };
-    
     
     return (
         <div className="forgot-password-container">
