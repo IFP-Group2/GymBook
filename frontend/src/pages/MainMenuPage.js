@@ -15,12 +15,21 @@ const MainMenuPage = () => {
 
   useEffect(() => {
     const fetchData = async () => {
+      // Simulando la llamada al backend
       const token = localStorage.getItem('authToken');
       try {
-        const response = await axios.get('http://localhost:8080/api/main-menu', { 
-          headers: { Authorization: `Bearer ${token}` } 
-        });
-        setData(response.data);
+        // Si no tienes un backend real, simula los datos de menú aquí.
+        // Puedes omitir la llamada Axios y directamente asignar los datos.
+        const response = {
+          data: {
+            menuItems: [
+              { title: 'Reservar', link: '/book-class', icon: <LuCalendarDays /> },
+              { title: 'Entrenadores', link: '/trainers', icon: <BsPersonLinesFill /> },
+              { title: 'Configuración', link: '/settings', icon: <FaGears /> },
+            ]
+          }
+        };
+        setData(response.data.menuItems); // Asignamos los datos simulados
       } catch (error) {
         console.error("Error fetching data:", error);
         setError('Error al obtener los datos.');
@@ -36,24 +45,16 @@ const MainMenuPage = () => {
       {error && <p>{error}</p>}
       {data ? (
         <div className="menu-options">
-          <button onClick={() => navigate('/book-class')}>
-            <span className="button-content">
-              <IconContext.Provider value={{ className: "button_icon" }}><LuCalendarDays /></IconContext.Provider>
-              Reservar
-            </span>
-          </button>
-          <button onClick={() => navigate('/trainers')}>
-            <span className="button-content">
-              <IconContext.Provider value={{ className: "button_icon" }}><BsPersonLinesFill /></IconContext.Provider>
-              Entrenadores
-            </span>
-          </button>
-          <button onClick={() => navigate('/settings')}>
-            <span className="button-content">
-              <IconContext.Provider value={{ className: "button_icon" }}><FaGears /></IconContext.Provider>
-              Configuración
-            </span>
-          </button>
+          {data.map((item, index) => (
+            <button key={index} onClick={() => navigate(item.link)}>
+              <span className="button-content">
+                <IconContext.Provider value={{ className: "button_icon" }}>
+                  {item.icon}
+                </IconContext.Provider>
+                {item.title}
+              </span>
+            </button>
+          ))}
         </div>
       ) : (
         <p>Cargando...</p>
@@ -61,6 +62,7 @@ const MainMenuPage = () => {
       <BottomNavBar />
     </div>
   );
-}
+};
 
 export default MainMenuPage;
+
