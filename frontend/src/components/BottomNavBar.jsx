@@ -4,11 +4,13 @@ import '../styles/BottomNavBar.css';
 import { LuCalendarDays } from "react-icons/lu";
 import { BsPersonLinesFill } from "react-icons/bs";
 import { FaGears } from "react-icons/fa6";
-import homeIcon from '../assets/logos/logo_gymbook_favicon_dark.png'; // ruta a tu imagen PNG
 
 const BottomNavBar = () => {
   const navigate = useNavigate();
   const location = useLocation();
+
+  // Referencia a la imagen en la carpeta public
+  const homeIcon = '/assets/logos/logo_gymbook_favicon_dark.png'; // Ruta a tu imagen PNG
 
   return (
     <div className="bottom-nav">

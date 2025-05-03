@@ -1,8 +1,10 @@
 package GymBook.backend.controllers;
 
 import GymBook.backend.dtos.LoginRequest;
+import GymBook.backend.dtos.LoginResponse;
 import GymBook.backend.entities.Usuario;
 import GymBook.backend.services.EmailService;
+import GymBook.backend.securityConfig.JwtService;
 import GymBook.backend.services.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -10,7 +12,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 
@@ -26,6 +27,8 @@ public class AuthController {
     private final BCryptPasswordEncoder passwordEncoder;
 
     @Autowired
+    private JwtService jwtService;
+    @Autowired
     private EmailService emailService;
 
     public AuthController(UsuarioService usuarioService, BCryptPasswordEncoder passwordEncoder) {
@@ -36,22 +39,21 @@ public class AuthController {
     @PostMapping("/login")
     public ResponseEntity<?> login(@RequestBody LoginRequest loginRequest) {
         try {
-            System.out.println("Correo recibido: " + loginRequest.getEmail());  // Añade un log aquí para verificar el correo recibido
             Usuario usuario = usuarioService.findByEmail(loginRequest.getEmail());
 
             if (usuario == null) {
-                return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Credenciales inválidas");
+                return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Usuario no encontrado");
             }
 
-            // Verifica la contraseña
             if (!passwordEncoder.matches(loginRequest.getPassword(), usuario.getPassword())) {
                 return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Credenciales inválidas");
             }
 
-            // Si las credenciales son correctas, generar un token JWT o alguna otra respuesta
-            return ResponseEntity.ok("Login exitoso");
+            String token = jwtService.generateToken(usuario);
+            return ResponseEntity.ok(new LoginResponse(token, "Login exitoso"));
         } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error interno del servidor");
+            e.printStackTrace(); // Imprime la traza de la excepción en los logs
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error interno del servidor: " + e.getMessage());
         }
     }
 

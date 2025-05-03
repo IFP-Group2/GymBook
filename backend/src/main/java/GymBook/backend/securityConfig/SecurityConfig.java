@@ -14,12 +14,11 @@ import org.springframework.web.cors.CorsConfigurationSource;
 public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-        http.cors() // Habilita CORS
+        http.cors()
                 .and()
-                .csrf().disable() // Desactiva CSRF si no es necesario
+                .csrf().disable()
                 .authorizeRequests()
                 .anyRequest().permitAll(); // Permite todas las solicitudes
-
         return http.build();
     }
 

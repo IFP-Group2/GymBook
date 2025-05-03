@@ -35,11 +35,15 @@ public class UsuarioService {
             throw new IllegalArgumentException("La contraseña no puede estar vacía");
         }
 
-        // Encriptar la contraseña antes de guardar el usuario
-        String encodedPassword = passwordEncoder.encode(usuario.getPassword());
-        usuario.setPassword(encodedPassword); // Establecer la contraseña encriptada
-        return usuarioRepository.save(usuario); // Guardar el usuario en la base de datos
+        // Solo encripta si no empieza con "$2a$" (formato típico bcrypt)
+        if (!usuario.getPassword().startsWith("$2a$")) {
+            String encodedPassword = passwordEncoder.encode(usuario.getPassword());
+            usuario.setPassword(encodedPassword);
+        }
+
+        return usuarioRepository.save(usuario);
     }
+
 
 
     public void testPassword(String rawPassword) {
