@@ -52,3 +52,41 @@
 .trainers-add button:hover {
     background-color: #45a049;
 }
+
+.trainer-actions {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+.trainer-actions button {
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.trainer-actions button:hover {
+    transform: scale(1.05);
+}
+
+.trainer-actions .edit-button {
+    background-color: #4CAF50;
+    color: white;
+}
+
+.trainer-actions .edit-button:hover {
+    background-color: #45a049;
+}
+
+.trainer-actions .delete-button {
+    background-color: #e74c3c;
+    color: white;
+}
+
+.trainer-actions .delete-button:hover {
+    background-color: #c0392b;
+}

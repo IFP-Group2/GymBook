@@ -57,9 +57,9 @@ const TrainersPage = () => {
                         <p><strong>Experiencia:</strong> {trainer.experiencia}</p>
                         <div className="trainer-actions">
                             <Link to={`/edit-trainer/${trainer.usuarioId}`}>
-                                <button>Editar</button>
+                                <button className="edit-button">Editar</button>
                             </Link>
-                            <button onClick={() => deleteTrainer(trainer.usuarioId)}>Eliminar</button>
+                            <button className="delete-button" onClick={() => deleteTrainer(trainer.usuarioId)}>Eliminar</button>
                         </div>
                     </div>
                 ))}
