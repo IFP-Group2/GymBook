@@ -6,20 +6,25 @@ import { LuCalendarDays } from "react-icons/lu";
 import { BsPersonLinesFill } from "react-icons/bs";
 import { FaGears } from "react-icons/fa6";
 import BottomNavBar from '../components/BottomNavBar';
-import axios from 'axios';
 
 const MainMenuPage = () => {
   const navigate = useNavigate();
   const [data, setData] = useState(null);
   const [error, setError] = useState('');
+  const [username, setUsername] = useState('');
 
   useEffect(() => {
+    // Obtener el nombre de usuario desde el Session Storage
+    const storedUsername = sessionStorage.getItem('username');
+    if (storedUsername) {
+      setUsername(storedUsername); // Actualizar el estado con el nombre del usuario
+    } else {
+      setUsername('Usuario'); // Valor por defecto si no hay nombre
+    }
+
+    // Simulación de obtención de datos del menú
     const fetchData = async () => {
-      // Simulando la llamada al backend
-      const token = localStorage.getItem('authToken');
       try {
-        // Si no tienes un backend real, simula los datos de menú aquí.
-        // Puedes omitir la llamada Axios y directamente asignar los datos.
         const response = {
           data: {
             menuItems: [
@@ -29,9 +34,9 @@ const MainMenuPage = () => {
             ]
           }
         };
-        setData(response.data.menuItems); // Asignamos los datos simulados
+        setData(response.data.menuItems);
       } catch (error) {
-        console.error("Error fetching data:", error);
+        console.error("Error al obtener los datos:", error);
         setError('Error al obtener los datos.');
       }
     };
@@ -41,7 +46,8 @@ const MainMenuPage = () => {
 
   return (
     <div className="main-menu-container">
-      <h1>Bienvenid@ a tu gimnasio</h1>
+      {/* Mensaje de bienvenida con el nombre del usuario */}
+      <h1>Bienvenid@ a tu gimnasio, {username}!</h1>
       {error && <p>{error}</p>}
       {data ? (
         <div className="menu-options">
@@ -65,4 +71,3 @@ const MainMenuPage = () => {
 };
 
 export default MainMenuPage;
-

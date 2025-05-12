@@ -31,6 +31,8 @@ public class AuthController {
     @Autowired
     private EmailService emailService;
 
+    String nom_usuario = "";
+
     public AuthController(UsuarioService usuarioService, BCryptPasswordEncoder passwordEncoder) {
         this.usuarioService = usuarioService;
         this.passwordEncoder = passwordEncoder;
@@ -39,23 +41,34 @@ public class AuthController {
     @PostMapping("/login")
     public ResponseEntity<?> login(@RequestBody LoginRequest loginRequest) {
         try {
+            // Buscar al usuario por su correo electrónico
             Usuario usuario = usuarioService.findByEmail(loginRequest.getEmail());
 
+            // Verificar si el usuario existe
             if (usuario == null) {
                 return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Usuario no encontrado");
             }
-
+            // Verificar la contraseña utilizando el codificador
             if (!passwordEncoder.matches(loginRequest.getPassword(), usuario.getPassword())) {
                 return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Credenciales inválidas");
             }
 
+            // Generar el token JWT para el usuario autenticado
             String token = jwtService.generateToken(usuario);
-            return ResponseEntity.ok(new LoginResponse(token, "Login exitoso"));
+
+            // Crear la respuesta incluyendo el token, el mensaje y el nombre del usuario
+            nom_usuario = usuario.getNombre();
+            LoginResponse response = new LoginResponse(token, "Login exitoso", nom_usuario);
+
+            // Devolver la respuesta con el token y el nombre
+            return ResponseEntity.ok(response);
         } catch (Exception e) {
-            e.printStackTrace(); // Imprime la traza de la excepción en los logs
+            // Manejo de excepciones y errores internos
+            e.printStackTrace();
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error interno del servidor: " + e.getMessage());
         }
     }
+
 
 
     @PostMapping("/forgot-password")

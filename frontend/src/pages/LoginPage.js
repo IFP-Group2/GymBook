@@ -4,11 +4,13 @@ import { useNavigate, Link } from 'react-router-dom';
 import '../styles/LoginPage.css';
 
 function LoginPage() {
+    // Definición de los estados para el formulario y el mensaje de respuesta
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [message, setMessage] = useState('');
     const navigate = useNavigate();
 
+    // Manejo del envío del formulario
     const handleSubmit = async (e) => {
         e.preventDefault();
         if (!email || !password) {
@@ -20,18 +22,29 @@ function LoginPage() {
                 email,
                 password,
             });
-            // Mensaje de la respuesta
-            setMessage(response.data.message);
+    
+            // Verificar si el inicio de sesión fue exitoso
             if (response.data.message === "Login exitoso") {
-                localStorage.setItem('userEmail', email);
+                console.log(response.data);
+                console.log(response.data.username);
+                // Obtener los datos del usuario desde la respuesta del servidor
+                const { username, role, token } = response.data;
+    
+                // Guardar en el Session Storage (corrección del campo username)
+                sessionStorage.setItem('username', username || email); // Si no hay nombre, guarda el email
+                sessionStorage.setItem('role', role);
+                sessionStorage.setItem('token', token);
+    
+                setMessage('Inicio de sesión exitoso');
                 navigate('/mainmenu');
+            } else {
+                setMessage(response.data.message);
             }
         } catch (error) {
-            console.log(error);
+            console.error('Error durante el inicio de sesión:', error);
             if (error.response) {
-                // Manejo de error 401
                 if (error.response.status === 401) {
-                    setMessage('Credenciales incorrectas. Por favor, verifica tu email y contraseña.');
+                    setMessage('Credenciales incorrectas. Verifica tu email y contraseña.');
                 } else {
                     setMessage(error.response.data.message || 'Error en el inicio de sesión');
                 }
@@ -39,16 +52,20 @@ function LoginPage() {
                 setMessage('Error al conectar con el servidor');
             }
         }
-    };
-    // Referencia a la imagen en la carpeta public
-    const logo = '/assets/logos/logo_gymbook_dark.png'; // Ruta a tu imagen PNG
+    };    
+
+    // Ruta del logo en la carpeta public
+    const logo = '/assets/logos/logo_gymbook_dark.png';
 
     return (
         <div className="login-container">
-            {/* Logo arriba del formulario */}
+            {/* Mostrar el logo de la aplicación */}
             <img src={logo} alt="GymBook logo" className="login-logo" />
 
+            {/* Título de la página */}
             <h1 className="h1_inicio">Inicia sesión</h1>
+
+            {/* Formulario de inicio de sesión */}
             <form className="login-form" onSubmit={handleSubmit}>
                 <input
                     type="text"
@@ -66,12 +83,14 @@ function LoginPage() {
             </form>
 
             {/* Mensaje de error o éxito */}
-            {message && <p>{typeof message === 'string' ? message : JSON.stringify(message)}</p>}
+            {message && <p>{message}</p>}
 
-            {/* Aquí agregamos el "¿Olvidaste tu contraseña?" */}
+            {/* Enlace para recuperar la contraseña */}
             <div className="forgot-password">
                 <Link to="/forgot-password">¿Olvidaste tu contraseña?</Link>
             </div>
+
+            {/* Enlace para crear una cuenta nueva */}
             <div className="signup-link">
                 <p>¿No tienes cuenta?</p>
                 <Link to="/signup">Crear una cuenta</Link>

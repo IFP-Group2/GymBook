@@ -1,15 +1,18 @@
 package GymBook.backend.dtos;
 
-
 public class LoginResponse {
     private String token;
     private String message;
+    public String username; // Nombre del usuario
 
-    public LoginResponse(String token, String message) {
+    // Constructor actualizado para incluir el nombre del usuario
+    public LoginResponse(String token, String message, String username) {
         this.token = token;
-        this .message = message;
+        this.message = message;
+        this.username = username;
     }
 
+    // Getters y setters
     public String getToken() {
         return token;
     }
