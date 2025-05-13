@@ -39,3 +39,20 @@
 .button_icon {
   font-size: 22px; /* tamaño del ícono */
 }
+
+/* Ajuste para el contenedor principal para que no quede oculto detrás del menú */
+.settings-container {
+  padding-bottom: 60px; /* Añadir espacio para el menú inferior */
+}
+
+/* Ajustes para el menú inferior */
+.bottom-nav-bar {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  background-color: #333;
+  color: white;
+  text-align: center;
+  padding: 10px 0;
+  z-index: 10; /* Asegura que el menú esté siempre visible */
+}

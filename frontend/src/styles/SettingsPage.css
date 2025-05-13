@@ -48,3 +48,34 @@ body.dark-mode .settings-section h2 {
     color: #fff;
     /* Color blanco cuando hay modo oscuro */
 }
+
+.settings-section {
+    margin: 20px 0;
+}
+
+.settings-section h2 {
+    margin-bottom: 10px;
+}
+
+.settings-section button {
+    padding: 12px 20px;
+    font-size: 16px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.settings-section button:hover {
+    background-color: #45a049;
+}
+
+/* Estilo específico para el botón de cerrar sesión */
+.logout-button {
+    background-color: #e74c3c;
+}
+
+.logout-button:hover {
+    background-color: #c0392b;
+}

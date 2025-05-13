@@ -2,9 +2,11 @@ import React from 'react';
 import '../styles/SettingsPage.css';
 import { Link } from 'react-router-dom';
 import BottomNavBar from '../components/BottomNavBar';
-//Funcion SettingsPage para la pagina de configuracion
+import LogoutButton from '../components/LogoutButton'; // Importar el botón de cerrar sesión
+
+// Funcion SettingsPage para la pagina de configuracion
 const SettingsPage = () => {
-    //Apariencia de la pagina
+    // Apariencia de la pagina
     return (
         <div className="settings-container">
             <h1>Configuración</h1>
@@ -30,7 +32,13 @@ const SettingsPage = () => {
                 </Link>
             </div>
 
-            {/* Menú */}
+            {/* Sección para cerrar sesión */}
+            <div className="settings-section">
+                <h2>Sesión</h2>
+                <LogoutButton /> {/* Botón de cierre de sesión */}
+            </div>
+
+            {/* Menú de navegación en la parte inferior */}
             <BottomNavBar />
         </div>
     );
