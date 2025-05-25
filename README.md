@@ -89,14 +89,14 @@ Si tienes alguna pregunta o sugerencia, no dudes en contactarme:
 
 - **GitHub**: [ClaudiaCalero](https://github.com/ClaudiaCalero)
 - **GitHub**: [samcrugom](https://github.com/samcrugom)
-- **GitHub**: [tu_usuario](https://github.com/tu_usuario)
+- **GitHub**: [Jose Moreno](https://github.com/nonim12)
 - **GitHub**: [tu_usuario](https://github.com/tu_usuario)
 
 ## 👥 Personas Implicadas
 
 - **Clàudia Calero Duró** - [LinkedIn](https://www.linkedin.com/in/claudia-calero/)
 - **Samuel Cruz Gómez** - [LinkedIn](https://es.linkedin.com/in/samuel-cruz-gomez)
-- **Nombre 3** - [LinkedIn](https://www.linkedin.com/in/tu_perfil3)
+- **José Antonio Moreno Marín** - [LinkedIn](https://www.linkedin.com/in/jos%C3%A9-antonio-moreno-mar%C3%ADn-190115335/)
 - **Nombre 4** - [LinkedIn](https://www.linkedin.com/in/tu_perfil4)
 
 ## 🎉 ¡Gracias por usar GymBook! 
