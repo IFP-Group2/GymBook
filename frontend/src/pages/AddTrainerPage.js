@@ -69,25 +69,24 @@ const AddTrainerPage = () => {
             <h1>Añadir nuevo entrenador</h1>
             <form onSubmit={handleSubmit}>
                 <div className="form-group">
-                    <label>Especialidad:</label>
                     <input
                         type="text"
                         value={especialidad}
                         onChange={(e) => setEspecialidad(e.target.value)}
+                        placeholder='Especialidad'
                         required
                     />
                 </div>
                 <div className="form-group">
-                    <label>Experiencia (años):</label>
                     <input
                         type="number"
                         value={experiencia}
                         onChange={(e) => setExperiencia(e.target.value)}
+                        placeholder='Experiencia (años)'
                         required
                     />
                 </div>
                 <div className="form-group">
-                    <label>Usuario:</label>
                     <select
                         value={usuarioId}
                         onChange={(e) => setUsuarioId(e.target.value)}
