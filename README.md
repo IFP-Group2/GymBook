@@ -36,6 +36,16 @@ Para instalar y ejecutar la aplicación, sigue estos pasos:
    ```
 
 5. **Accede a la aplicación**: Abre tu navegador y dirígete a `http://localhost:8080`. 🌐
+6. **Inicia MailDev para simular el envío de correos**:
+
+```bash
+npx maildev
+```
+
+📧 **¿Para qué sirve MailDev?**
+MailDev es un servidor SMTP local que permite simular el envío de correos electrónicos durante el desarrollo. En GymBook, se utiliza para probar la funcionalidad de reseteo de contraseña sin necesidad de configurar un proveedor real de correo.
+Una vez iniciado, puedes acceder a la interfaz visual de MailDev en:
+[http://localhost:1080](http://localhost:1080)
 
 ## 🛠️ Tecnologías Utilizadas
 
