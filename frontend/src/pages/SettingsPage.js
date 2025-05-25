@@ -3,9 +3,14 @@ import '../styles/SettingsPage.css';
 import { Link } from 'react-router-dom';
 import BottomNavBar from '../components/BottomNavBar';
 import LogoutButton from '../components/LogoutButton'; // Importar el botón de cerrar sesión
+import useApplyDarkMode from '../hooks/useApplyDarkMode'; // Hook de DarkMode
 
 // Funcion SettingsPage para la pagina de configuracion
 const SettingsPage = () => {
+
+    // Aplicamos el modo oscuro según sessionStorage
+    useApplyDarkMode();
+
     // Apariencia de la pagina
     return (
         <div className="settings-container">

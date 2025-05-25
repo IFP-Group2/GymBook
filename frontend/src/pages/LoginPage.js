@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate, Link } from 'react-router-dom';
 import '../styles/LoginPage.css';
+import useApplyDarkMode from '../hooks/useApplyDarkMode'; // Hook de DarkMode
 
 function LoginPage() {
     // Definición de los estados para el formulario y el mensaje de respuesta
@@ -9,6 +10,9 @@ function LoginPage() {
     const [password, setPassword] = useState('');
     const [message, setMessage] = useState('');
     const navigate = useNavigate();
+
+    // Aplicamos el modo oscuro según sessionStorage
+    useApplyDarkMode();
 
     // Manejo del envío del formulario
     const handleSubmit = async (e) => {
@@ -34,6 +38,7 @@ function LoginPage() {
                 sessionStorage.setItem('username', username || email); // Si no hay nombre, guarda el email
                 sessionStorage.setItem('role', role);
                 sessionStorage.setItem('token', token);
+                sessionStorage.setItem('dark_mode', true);
     
                 setMessage('Inicio de sesión exitoso');
                 navigate('/mainmenu');

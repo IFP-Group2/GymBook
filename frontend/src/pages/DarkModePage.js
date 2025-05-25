@@ -3,8 +3,12 @@ import '../styles/DarkModePage.css';
 import BottomNavBar from '../components/BottomNavBar';
 
 const DarkModePage = () => {
-    const [darkMode, setDarkMode] = useState(false);
+    // Inicializamos darkMode leyendo del sessionStorage (con fallback a false)
+    const [darkMode, setDarkMode] = useState(() => {
+        return sessionStorage.getItem('dark_mode') === 'true';
+    });
 
+    // Aplicamos las clases de modo oscuro o claro cuando cambia el estado
     useEffect(() => {
         if (darkMode) {
             document.body.classList.add('dark-mode');
@@ -13,6 +17,10 @@ const DarkModePage = () => {
             document.body.classList.add('light-mode');
             document.body.classList.remove('dark-mode');
         }
+
+        // Guardamos la preferencia en sessionStorage cada vez que cambie
+        sessionStorage.setItem('dark_mode', darkMode);
+        console.log("DarkMode: "+darkMode);
     }, [darkMode]);
 
     const handleToggle = () => {
@@ -32,7 +40,7 @@ const DarkModePage = () => {
                     Activar Modo Oscuro
                 </label>
             </div>
-            
+
             {/* Menú */}
             <BottomNavBar />
         </div>

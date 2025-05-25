@@ -6,12 +6,16 @@ import { LuCalendarDays } from "react-icons/lu";
 import { BsPersonLinesFill } from "react-icons/bs";
 import { FaGears } from "react-icons/fa6";
 import BottomNavBar from '../components/BottomNavBar';
+import useApplyDarkMode from '../hooks/useApplyDarkMode'; // Hook de DarkMode
 
 const MainMenuPage = () => {
   const navigate = useNavigate();
   const [data, setData] = useState(null);
   const [error, setError] = useState('');
   const [username, setUsername] = useState('');
+
+  // Aplicamos el modo oscuro según sessionStorage
+  useApplyDarkMode();
 
   useEffect(() => {
     // Obtener el nombre de usuario desde el Session Storage

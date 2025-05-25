@@ -2,10 +2,15 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import '../styles/BookClassPage.css';
 import BottomNavBar from '../components/BottomNavBar';
+import useApplyDarkMode from '../hooks/useApplyDarkMode'; // Hook de DarkMode
 
 //Funcion BookClassPage que contiene la logica de dicha pagina
 const BookClassPage = () => {
     const [message, setMessage] = useState('');
+
+    // Aplicamos el modo oscuro según sessionStorage
+    useApplyDarkMode();
+    
     //Variable que contiene la informacion de los entrenadores (id, nombre de la clase, nombre del entrenador, fecha y hora)
     const classes = [
         { id: 1, name: 'Yoga Avanzado', trainer: 'Celia Martínez', date: '2025-06-20', time: '10:00' },

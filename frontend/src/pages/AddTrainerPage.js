@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../styles/AddTrainerPage.css';
 import BottomNavBar from '../components/BottomNavBar';
+import useApplyDarkMode from '../hooks/useApplyDarkMode'; // Hook de DarkMode
 
 //Funcion AddTrainerPage que añade un nuevo entrenador
 const AddTrainerPage = () => {
@@ -10,6 +11,9 @@ const AddTrainerPage = () => {
     const [usuarioId, setUsuarioId] = useState('');
     const [usuarios, setUsuarios] = useState([]);
     const navigate = useNavigate();
+
+    // Aplicamos el modo oscuro según sessionStorage
+    useApplyDarkMode();
 
     // Cargar la lista de usuarios al montar el componente
     useEffect(() => {

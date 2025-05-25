@@ -1,7 +1,14 @@
-import React, { useState } from 'react'; import axios from 'axios'; import '../styles/ForgotPasswordPage.css';
+import React, { useState } from 'react';
+import axios from 'axios';
+import '../styles/ForgotPasswordPage.css';
+import useApplyDarkMode from '../hooks/useApplyDarkMode'; // Hook de DarkMode
+
 //Funcion que contiene la logica de ForgotPasswordPage
 const ForgotPasswordPage = () => {
     const [email, setEmail] = useState(''); const [message, setMessage] = useState('');
+
+    // Aplicamos el modo oscuro según sessionStorage
+    useApplyDarkMode();
 
     const handleSubmit = async (e) => {
         e.preventDefault();

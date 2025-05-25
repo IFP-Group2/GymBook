@@ -2,9 +2,14 @@ import React, { useState, useEffect } from 'react';
 import '../styles/TrainersPage.css';
 import { Link } from 'react-router-dom';
 import BottomNavBar from '../components/BottomNavBar';
+import useApplyDarkMode from '../hooks/useApplyDarkMode'; // Hook de DarkMode
+
 //Funcion TrainersPage con la logica para mostrar los entrenadores
 const TrainersPage = () => {
     const [trainers, setTrainers] = useState([]);
+
+    // Aplicamos el modo oscuro según sessionStorage
+    useApplyDarkMode();
 
     // Cargar la lista de entrenadores al montar el componente
     useEffect(() => {

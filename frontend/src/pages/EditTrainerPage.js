@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
+import useApplyDarkMode from '../hooks/useApplyDarkMode'; // Hook de DarkMode
+
 //Funcion que contiene la logica de EditTrainersPage
 const EditTrainerPage = () => {
     const { id } = useParams(); // Obtener el ID del entrenador desde la URL
@@ -9,6 +11,9 @@ const EditTrainerPage = () => {
     const [usuarioId, setUsuarioId] = useState('');
     const [usuarios, setUsuarios] = useState([]);
     const [trainer, setTrainer] = useState({}); // Estado para el entrenador
+
+    // Aplicamos el modo oscuro según sessionStorage
+    useApplyDarkMode();
 
     // Cargar la lista de usuarios al montar el componente
     useEffect(() => {

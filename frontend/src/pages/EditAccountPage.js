@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import '../styles/EditAccountPage.css';
+import BottomNavBar from '../components/BottomNavBar';
+import useApplyDarkMode from '../hooks/useApplyDarkMode'; // Hook de DarkMode
+
 //Funcion que contiene la logica de EditAccountPage
 const EditAccountPage = () => {
     //Campos del formulario
@@ -13,6 +16,9 @@ const EditAccountPage = () => {
     });
 
     const [message, setMessage] = useState('');
+
+    // Aplicamos el modo oscuro según sessionStorage
+    useApplyDarkMode();
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -54,6 +60,9 @@ const EditAccountPage = () => {
                 <button type="submit">Actualizar</button>
             </form>
             {message && <p className="message">{message}</p>}
+
+            {/* Menú */}
+            <BottomNavBar />
         </div>
     );
 };

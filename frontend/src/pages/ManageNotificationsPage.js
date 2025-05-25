@@ -1,11 +1,17 @@
 import React, { useState } from 'react';
 import '../styles/ManageNotificationsPage.css';
+import BottomNavBar from '../components/BottomNavBar';
+import useApplyDarkMode from '../hooks/useApplyDarkMode'; // Hook de DarkMode
+
 //Funcion ManageNotificationsPage que contiene la logica
 const ManageNotificationsPage = () => {
     const [emailNotifications, setEmailNotifications] = useState(false);
     const [smsNotifications, setSmsNotifications] = useState(false);
     const [appNotifications, setAppNotifications] = useState(false);
     const [message, setMessage] = useState('');
+
+    // Aplicamos el modo oscuro según sessionStorage
+    useApplyDarkMode();
 
     const handleSave = () => {
         // Aquí podrías enviar los cambios al servidor en el futuro
@@ -50,6 +56,9 @@ const ManageNotificationsPage = () => {
             </form>
 
             {message && <p className="message">{message}</p>}
+
+            {/* Menú */}
+            <BottomNavBar />
         </div>
     );
 };
