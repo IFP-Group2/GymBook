@@ -37,7 +37,7 @@ const DarkModePage = () => {
                         checked={darkMode}
                         onChange={handleToggle}
                     />
-                    Activar Modo Oscuro
+                    {darkMode == true ? "Desactivar" : "Activar"} Modo Oscuro
                 </label>
             </div>
 

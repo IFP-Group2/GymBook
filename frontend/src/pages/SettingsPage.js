@@ -10,6 +10,7 @@ const SettingsPage = () => {
 
     // Aplicamos el modo oscuro según sessionStorage
     useApplyDarkMode();
+    var darkModeEnabled = sessionStorage.getItem('dark_mode') === 'true';
 
     // Apariencia de la pagina
     return (
@@ -36,7 +37,7 @@ const SettingsPage = () => {
                 <div className="settings-section">
                     <h2>Preferencias</h2>
                     <Link to="/dark-mode">
-                        <button>Cambiar a modo oscuro</button>
+                        <button>Cambiar a modo {darkModeEnabled == true ? "claro" : "oscuro"}</button>
                     </Link>
                 </div>
 
