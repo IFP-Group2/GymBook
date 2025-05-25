@@ -82,7 +82,7 @@ Esperamos que disfrutes de la aplicación y que te ayude a gestionar tu gimnasio
 
 *Puedes ver un video de cómo funciona la aplicación aquí:*
 
-[Ver Video](https://www.youtube.com/watch?v=tu_video)  <!-- video -->
+[Ver Video](https://youtu.be/mlzcfsgAXIY)  <!-- video -->
 
 ## 🤝 Contribuciones
 
