@@ -88,14 +88,14 @@ Esperamos que disfrutes de la aplicación y que te ayude a gestionar tu gimnasio
 Si tienes alguna pregunta o sugerencia, no dudes en contactarme:
 
 - **GitHub**: [ClaudiaCalero](https://github.com/ClaudiaCalero)
-- **GitHub**: [tu_usuario](https://github.com/tu_usuario)
+- **GitHub**: [samcrugom](https://github.com/samcrugom)
 - **GitHub**: [tu_usuario](https://github.com/tu_usuario)
 - **GitHub**: [tu_usuario](https://github.com/tu_usuario)
 
 ## 👥 Personas Implicadas
 
 - **Clàudia Calero Duró** - [LinkedIn](https://www.linkedin.com/in/claudia-calero/)
-- **Nombre 2** - [LinkedIn](https://www.linkedin.com/in/tu_perfil2)
+- **Samuel Cruz Gómez** - [LinkedIn](https://es.linkedin.com/in/samuel-cruz-gomez)
 - **Nombre 3** - [LinkedIn](https://www.linkedin.com/in/tu_perfil3)
 - **Nombre 4** - [LinkedIn](https://www.linkedin.com/in/tu_perfil4)
 
