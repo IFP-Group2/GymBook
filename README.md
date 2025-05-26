@@ -74,11 +74,12 @@ Una vez iniciado, puedes acceder a la interfaz visual de MailDev en:
 Post: http://localhost:8080/auth/login
 
 Cuerpo (JSON):   
-
-  {
+```bash
+ {
       "email": "ana.garcia@example.com",
       "password": "password123"
     }
+```
 
 ![Image](https://github.com/user-attachments/assets/99b3b2e0-5b6b-4d80-b2e6-53ffa04988fe)
 
