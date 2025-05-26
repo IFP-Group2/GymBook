@@ -41,24 +41,20 @@
 1. **Clona el repositorio**:
    ```bash
    git clone https://github.com/tu_usuario/GymBook.git
-``
 
 2. **Navega al directorio del proyecto**:
    `````
    cd GymBook
-   ```
    
 3. **Instala las dependencias**:
 
    ````
    mvn install
-   ```
 
 4. **Ejecuta la aplicación**:
 
    `````
    mvn spring-boot:run
-   ```
 
 5. **Accede a la aplicación**:
    Abre tu navegador en `http://localhost:8080`.
